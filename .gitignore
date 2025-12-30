@@ -1,0 +1,19 @@
+# System & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Frontend (Node)
+node_modules/
+dist/
+.env
+
+# Backend (Laravel) - Redundant safeguards if backend/.gitignore fails
+backend/vendor/
+backend/node_modules/
+backend/.env
+backend/storage/*.key
+backend/public/storage
+backend/public/hot

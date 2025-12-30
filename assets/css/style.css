@@ -1,0 +1,330 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #a3a3a3;
+  font-size: 1.6rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0a0a0a;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 4.8rem;
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+
+h2 {
+  font-size: 3.6rem;
+}
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2.8rem;
+  }
+}
+
+h3 {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 2rem;
+  max-width: 70ch;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #c084fc, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.header {
+  background-color: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #c084fc, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@media (max-width: 768px) {
+  .header__nav {
+    display: none;
+  }
+}
+.header__list {
+  display: flex;
+  gap: 4rem;
+}
+.header__link {
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #a3a3a3;
+  transition: color 0.3s ease;
+  position: relative;
+}
+.header__link:hover, .header__link--active {
+  color: #ffffff;
+}
+.header__link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  transition: width 0.3s ease;
+}
+.header__link:hover::after, .header__link--active::after {
+  width: 100%;
+}
+
+body {
+  padding-top: 80px;
+}
+
+.footer {
+  background-color: #171717;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: #a3a3a3;
+  padding: 4rem 0;
+  margin-top: 8rem;
+  text-align: center;
+}
+.footer__text {
+  font-size: 1.4rem;
+  opacity: 0.8;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.btn--primary {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+}
+.btn--primary:active {
+  transform: translateY(0);
+}
+.btn--secondary {
+  background: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.btn--secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+.card {
+  background-color: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.card__image-container {
+  height: 220px;
+  background-color: #262626;
+  overflow: hidden;
+  position: relative;
+}
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.card:hover .card__image {
+  transform: scale(1.05);
+}
+.card__content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.card__title {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+.card__description {
+  color: #a3a3a3;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.form {
+  background: #171717;
+  padding: 4rem;
+  border-radius: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 50rem;
+  margin: 0 auto;
+}
+.form__group {
+  margin-bottom: 2rem;
+  position: relative;
+}
+.form__label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+.form__input, .form__textarea {
+  width: 100%;
+  padding: 1.2rem;
+  background-color: #262626;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  color: #ffffff;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+.form__input:focus, .form__textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  background-color: rgb(43.1, 43.1, 43.1);
+}
+.form__input--error, .form__textarea--error {
+  border-color: #ef4444;
+}
+.form__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.form__error-msg {
+  color: #ef4444;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+.form__error-msg--active {
+  display: block;
+}
+
+/*# sourceMappingURL=style.css.map */

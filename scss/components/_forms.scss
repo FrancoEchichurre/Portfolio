@@ -1,0 +1,62 @@
+// _forms.scss
+.form {
+    background: $color-bg-card;
+    padding: $spacing-lg;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    max-width: 50rem;
+    margin: 0 auto;
+
+    &__group {
+        margin-bottom: $spacing-md;
+        position: relative;
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 0.8rem;
+        font-weight: 500;
+        color: $color-text-main;
+        font-size: 1.4rem;
+    }
+
+    &__input,
+    &__textarea {
+        width: 100%;
+        padding: 1.2rem;
+        background-color: $color-bg-light;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: $radius-md;
+        color: $color-white;
+        font-family: inherit;
+        transition: all 0.3s ease;
+
+        &:focus {
+            outline: none;
+            border-color: $color-primary;
+            box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+            background-color: lighten($color-bg-light, 2%);
+        }
+
+        &--error {
+            border-color: $color-error;
+        }
+    }
+
+    &__textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    &__error-msg {
+        color: $color-error;
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+        display: none;
+
+        &--active {
+            display: block;
+        }
+    }
+}

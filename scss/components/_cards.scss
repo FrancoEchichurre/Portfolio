@@ -1,0 +1,56 @@
+// _cards.scss
+.card {
+    background-color: $color-bg-card;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: $shadow-lg;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &__image-container {
+        height: 220px;
+        background-color: $color-bg-light;
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+
+        .card:hover & {
+            transform: scale(1.05);
+        }
+    }
+
+    &__content {
+        padding: $spacing-md;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    &__title {
+        font-size: 2.2rem;
+        margin-bottom: $spacing-xs;
+        color: $color-text-main;
+    }
+
+    &__description {
+        color: $color-text-secondary;
+        font-size: 1.5rem;
+        margin-bottom: $spacing-md;
+        flex-grow: 1;
+    }
+}

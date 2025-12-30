@@ -1,0 +1,42 @@
+// _reset.scss
+// Reset básico y normalización
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; // 1rem = 10px
+    scroll-behavior: smooth;
+}
+
+body {
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
