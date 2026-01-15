@@ -1,84 +1,152 @@
 @use '../abstracts' as *;
 
 .hero {
+    position: relative;
     height: 100vh;
     width: 100%;
-    background-image: $texture-brick;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     overflow: hidden;
+    @include flex-center;
+    flex-direction: column;
+    background-color: $bg-brick;
+
+    &__wall-texture {
+        @include absolute-cover;
+        background-image: $texture-brick;
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.6) contrast(1.2);
+        z-index: 0;
+    }
 
     &__overlay {
-        position: absolute;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.6);
+        @include absolute-cover;
+        background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: 1;
+        pointer-events: none;
     }
 
     &__content {
         position: relative;
         z-index: 10;
         text-align: center;
+        padding: $spacing-md;
+    }
+
+    &__title-container {
+        position: relative;
+        margin-bottom: $spacing-lg;
     }
 
     &__title {
-        font-family: $font-display;
-        font-size: 3.75rem;
-        color: white;
-        transform: rotate(-2deg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 0.9;
 
-        @include respond-to(tablet) {
-            font-size: 6rem;
+        @include respond-to(desktop) {
+            flex-direction: row;
+            gap: $spacing-md;
         }
     }
 
-    &__name-highlight {
-        @include neon-glow($neon-cyan);
+    &__name-line {
+        font-family: 'Alfa Slab One', cursive;
+        font-size: clamp(3rem, 10vw, 8rem);
+        color: $spray-white;
+        text-shadow:
+            3px 3px 0 $spray-black,
+            -1px -1px 0 $spray-black,
+            6px 6px 0 darken($spray-white, 40%),
+            10px 10px 20px rgba(0, 0, 0, 0.8);
+        // transform: rotate(-2deg); // Removed rotation
+        display: block;
+
+        &.text-spray-blue {
+            color: $spray-blue;
+            text-shadow:
+                3px 3px 0 $spray-black,
+                -1px -1px 0 $spray-black,
+                6px 6px 0 darken($spray-blue, 30%),
+                10px 10px 20px rgba(0, 0, 0, 0.8);
+            // transform: rotate(2deg); // Removed rotation
+        }
     }
 
-    &__gradient-text {
-        background: linear-gradient(to right, $neon-cyan, $neon-magenta);
-        -webkit-background-clip: text;
-        color: transparent;
-        margin-left: 0;
-
-        @include respond-to(tablet) {
-            margin-left: 1rem;
-        }
+    &__drips {
+        position: absolute;
+        bottom: -40px;
+        left: 10%;
+        width: 80%;
+        background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,0 Q20,40 30,0 T50,0 T70,0 T90,0' fill='none' stroke='%233366ff' stroke-width='3'/%3E%3C/svg%3E");
+        background-repeat: repeat-x;
+        opacity: 0.8;
+        z-index: -1;
     }
 
     &__subtitle {
-        font-family: $font-graffiti;
-        font-size: 1.875rem;
-        color: $neon-yellow;
-        margin-top: 1rem;
-        letter-spacing: 0.1em;
-        background-color: rgba(0, 0, 0, 0.4);
-        padding: 0.5rem 1rem;
-        transform: rotate(1deg);
+        font-family: $font-stencil;
+        font-size: clamp(1.2rem, 3vw, 2.5rem);
+        color: $spray-yellow;
+        letter-spacing: 4px;
+        margin-bottom: $spacing-sm;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.6);
         display: inline-block;
-
-        @include respond-to(tablet) {
-            font-size: 3rem;
-        }
+        padding: $spacing-xs $spacing-md;
+        transform: skew(-10deg);
     }
 
     &__tagline {
-        font-family: 'Audio Wide', sans-serif; // Make sure this font is available or fallback
-        color: #d1d5db;
-        margin-top: 1.5rem;
-        font-size: 1.25rem;
-        letter-spacing: 0.1em;
+        font-family: $font-body;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+        margin-bottom: $spacing-xl;
+        font-weight: 300;
     }
 
     &__actions {
         display: flex;
-        gap: 1.5rem;
-        margin-top: 3rem;
+        gap: $spacing-lg;
         justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+.btn-sticker {
+    text-decoration: none;
+    font-family: $font-tag;
+    font-size: 1.5rem;
+    color: $bg-dark;
+    padding: $spacing-sm $spacing-xl;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+    position: relative;
+    display: inline-block;
+
+    // Tape Effect
+    &::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40%;
+        height: 20px;
+        background-color: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    &--red {
+        background-color: $spray-red;
+        color: white;
+        transform: rotate(-3deg);
+    }
+
+    &--blue {
+        background-color: $spray-blue;
+        color: white;
+        transform: rotate(3deg);
     }
 }

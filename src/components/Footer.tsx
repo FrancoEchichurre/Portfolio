@@ -1,30 +1,23 @@
 export const Footer = () => {
     return (
         <footer className="footer">
-            <div className="footer__bg"></div>
-            <div className="section__container footer__content">
-                <div className="footer__info">
-                    <h3 className="font-display">FRANCO ECHICHURRE</h3>
-                    <p className="font-body">Desarrollador Full Stack</p>
+            <div className="footer__asphalt-texture"></div>
+            <div className="footer__content">
+                <div className="footer__paint-stripe"></div>
+
+                <h3 className="footer__stencil-name">FRANCO ECHICHURRE</h3>
+
+                <div className="footer__meta">
+                    <span className="footer__copy">© 2026 // ALL CITY KING</span>
+                    <div className="footer__tags">
+                        <span>#REACT</span>
+                        <span>#CODE</span>
+                        <span>#ART</span>
+                    </div>
                 </div>
 
-                <div className="footer__center">
-                    <div className="footer__love">
-                        CODED WITH ❤️ & ☕
-                    </div>
-                    <div className="footer__tech">
-                        BUILT WITH REACT ⚛️ | STYLED WITH ATTITUDE 🎨
-                    </div>
-                </div>
-
-                <div className="footer__social">
-                    {/* Social Icons Placeholders */}
-                    <div className="btn-icon bg-brick text-white hover:text-black hover:bg-neon-cyan">
-                        GH
-                    </div>
-                    <div className="btn-icon bg-brick text-white hover:text-black hover:bg-neon-magenta">
-                        LI
-                    </div>
+                <div className="footer__made-with">
+                    CODED WITH <span className="text-spray-red">❤️</span> & SPRAY PAINT
                 </div>
             </div>
         </footer>

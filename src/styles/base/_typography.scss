@@ -1,22 +1,56 @@
 @use '../abstracts' as *;
 
+// Import Google Fonts
+// Bebas Neue, Alfa Slab One, Permanent Marker, Oswald, Inter
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Inter:wght@300;400;600&family=Oswald:wght@400;700&family=Permanent+Marker&display=swap');
+
 body {
     font-family: $font-body;
-    background-color: $urban-dark;
+    background-color: $bg-dark;
     color: white;
+    line-height: 1.6;
+    overflow-x: hidden; // Prevent horizontal scroll from rotated elements
 }
 
 h1,
+.h1 {
+    font-family: $font-secondary; // Alfa Slab or Bebas
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 h2,
+.h2 {
+    font-family: $font-primary;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 h3,
 h4,
-h5,
-h6 {
-    font-family: $font-display;
+.subtitle {
+    font-family: $font-stencil;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .font-graffiti {
-    font-family: $font-graffiti;
+    font-family: $font-tag;
+}
+
+// Utility classes for text
+.text-spray-red {
+    color: $spray-red;
+}
+
+.text-spray-blue {
+    color: $spray-blue;
+}
+
+.text-spray-green {
+    color: $spray-green;
+}
+
+.text-spray-yellow {
+    color: $spray-yellow;
 }

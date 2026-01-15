@@ -1,75 +1,68 @@
 @use '../abstracts' as *;
 
 .footer {
-    background-color: $urban-dark;
-    border-top: 4px solid $urban-brick;
-    padding: 3rem 0;
     position: relative;
+    padding: $spacing-xl $spacing-md;
+    background-color: $bg-asphalt;
     overflow: hidden;
+    text-align: center;
+    border-top: 5px solid $spray-white;
 
-    &__bg {
-        position: absolute;
-        inset: 0;
-        background-image: $texture-concrete;
-        opacity: 0.1;
-        pointer-events: none;
+    &__asphalt-texture {
+        @include absolute-cover;
+        background-image: $texture-asphalt;
+        opacity: 0.3;
+        mix-blend-mode: overlay;
     }
 
     &__content {
         position: relative;
         z-index: 10;
+        @include flex-center;
+        flex-direction: column;
+        gap: $spacing-lg;
+    }
+
+    &__paint-stripe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, $spray-red, $spray-blue, $spray-yellow);
+        opacity: 0.7;
+    }
+
+    &__stencil-name {
+        font-family: $font-stencil;
+        font-size: 3rem;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 5px;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    &__meta {
+        font-family: $font-body;
+        font-size: 0.9rem;
+        color: #888;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-
-        @include respond-to(tablet) {
-            flex-direction: row;
-            justify-content: space-between;
-        }
+        gap: $spacing-sm;
     }
 
-    &__info {
-        text-align: center;
-
-        @include respond-to(tablet) {
-            text-align: left;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            font-family: $font-body;
-            color: #9ca3af;
-        }
-    }
-
-    &__center {
+    &__tags {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
+        gap: $spacing-md;
+        font-family: $font-tag;
+        color: $spray-yellow;
     }
 
-    &__love {
-        font-family: $font-display;
-        color: $neon-cyan;
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-        letter-spacing: 0.1em;
-    }
-
-    &__tech {
-        font-family: $font-graffiti;
-        color: #6b7280;
-        font-size: 0.875rem;
-    }
-
-    &__social {
-        display: flex;
-        gap: 1rem;
+    &__made-with {
+        font-family: $font-stencil;
+        font-size: 0.8rem;
+        color: #666;
+        margin-top: $spacing-md;
     }
 }

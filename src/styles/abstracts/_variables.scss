@@ -1,25 +1,73 @@
-// Colores Urbanos
-$urban-dark: #1a1a1a;
-$urban-brick: #3d2f2f;
-$neon-cyan: #00ff88;
-$neon-yellow: #ffd700;
-$neon-magenta: #ff006e;
-$spray-white: #f0f0f0;
+// Colores de fondo
+$bg-dark: #0a0a0a;
+$bg-light: #ffffff;
+$bg-brick: #8b4513;
+$bg-asphalt: #2f2f2f;
+$urban-dark: #0a0a0a;
+$urban-brick: #8b4513;
+$urban-concrete: #4a4a4a;
+$urban-asphalt: #2f2f2f;
+$neon-cyan: #00ffff;
+$neon-magenta: #ff00ff;
+$neon-yellow: #ffcc00;
+$bg-concrete: #4a4a4a;
 
-// Fuentes
-$font-display: "Rubik Mono One", "Bebas Neue", "Alfa Slab One", cursive;
-$font-body: "Inter", "Roboto", sans-serif;
-$font-graffiti: "Permanent Marker", cursive;
+// Colores spray paint
+$spray-red: #ff3333;
+$spray-blue: #3366ff;
+$spray-green: #33ff33;
+$spray-yellow: #ffcc00;
+$spray-orange: #ff6600;
+$spray-purple: #9933ff;
+$spray-pink: #ff66cc;
+$spray-white: #ffffff;
+$spray-black: #000000;
 
-// Texturas (Placeholders)
-$texture-brick: url('https://images.unsplash.com/photo-1533038590317-7f4d37a28348?q=80&w=2699&auto=format&fit=crop');
-$texture-concrete: url('https://images.unsplash.com/photo-1518117625-72251a1ca4d6?q=80&w=2574&auto=format&fit=crop');
-$texture-asphalt: url('https://images.unsplash.com/photo-1518117625-72251a1ca4d6?q=80&w=2574&auto=format&fit=crop'); // Same as concrete for now
+// Colores de texto
+$text-primary: #ffffff;
+$text-secondary: #cccccc;
+$text-muted: #999999;
 
-// Spacing
+// Tipografías
+$font-graffiti: 'Bebas Neue', sans-serif;
+$font-stencil: 'Alfa Slab One', serif;
+$font-tag: 'Permanent Marker', cursive;
+$font-body: 'Inter', sans-serif;
+$font-display: 'Bebas Neue', sans-serif;
+
+// Espaciado
 $spacing-unit: 8px;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
 
 // Breakpoints
-$breakpoint-mobile: 480px;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1280px;
+$wide: 1440px;
+
+// Sombras
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+
+// Transiciones
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Textures
+$texture-brick: url('https://images.unsplash.com/photo-1533628635777-112b2239b1c7?q=80&w=2070&auto=format&fit=crop');
+$texture-concrete: url('https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1931&auto=format&fit=crop');
+$texture-asphalt: url('https://images.unsplash.com/photo-1519757656910-410ced69bea3?q=80&w=1974&auto=format&fit=crop');
+
+// Mapping for compatibility
+$font-primary: $font-graffiti;
+$font-secondary: $font-stencil;
+$spacing-giant: 80px;
+
+// End of file

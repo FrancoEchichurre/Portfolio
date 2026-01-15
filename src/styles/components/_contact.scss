@@ -1,0 +1,162 @@
+@use '../abstracts' as *;
+
+.contact-section {
+    padding: $spacing-giant 0;
+    min-height: 80vh;
+    background-color: $bg-dark;
+    background-image:
+        repeating-linear-gradient(45deg,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8) 10px,
+            rgba(20, 20, 20, 0.8) 10px,
+            rgba(20, 20, 20, 0.8) 20px);
+    @include flex-center;
+    flex-direction: column;
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 800px;
+    padding: $spacing-lg;
+}
+
+.wall-form {
+    background: rgba(255, 255, 255, 0.05); // Glassy dark
+    padding: $spacing-xl;
+    border: 2px solid $spray-white;
+    position: relative;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+
+    // Corner marks
+    &::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        width: 20px;
+        height: 20px;
+        border-top: 4px solid $spray-blue;
+        border-left: 4px solid $spray-blue;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        border-bottom: 4px solid $spray-blue;
+        border-right: 4px solid $spray-blue;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+
+    @include respond-to(desktop) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.input-sticker {
+    background: white;
+    border: none;
+    padding: $spacing-md;
+    font-family: $font-tag;
+    font-size: 1.2rem;
+    color: $bg-dark;
+    transform: rotate(1deg);
+    transition: transform 0.2s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+    &:focus {
+        outline: none;
+        transform: scale(1.02) rotate(0deg);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        z-index: 10;
+        border: 2px solid $spray-blue;
+    }
+
+    &::placeholder {
+        color: #999;
+        font-family: $font-stencil;
+    }
+}
+
+.textarea-sticker {
+    transform: rotate(-1deg);
+    resize: none;
+}
+
+.btn-spray-can {
+    background: $spray-blue;
+    color: white;
+    border: none;
+    padding: $spacing-md;
+    font-family: $font-secondary;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 0 darken($spray-blue, 20%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-md;
+    transition: all 0.1s;
+
+    &:active {
+        transform: translateY(4px);
+        box-shadow: none;
+    }
+}
+
+.social-cans {
+    margin-top: $spacing-xl;
+    display: flex;
+    justify-content: center;
+    gap: $spacing-xl;
+}
+
+.social-can {
+    width: 60px;
+    height: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+
+    .can-top {
+        width: 40px;
+        height: 15px;
+        background: #ccc;
+        border-radius: 4px 4px 0 0;
+        margin-bottom: 2px;
+    }
+
+    .can-body {
+        width: 100%;
+        flex: 1;
+        border-radius: 4px;
+        @include flex-center;
+        box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .can-label {
+        position: absolute;
+        bottom: -25px;
+        font-family: $font-stencil;
+        color: white;
+        font-size: 0.8rem;
+    }
+}

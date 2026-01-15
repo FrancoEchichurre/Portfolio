@@ -1,72 +1,123 @@
 @use 'variables' as *;
 
-@mixin graffiti-text($color: $spray-white) {
-    font-family: $font-graffiti;
-    color: $color;
-    text-shadow: 2px 2px 0px black, 4px 4px 0px rgba(0, 0, 0, 0.5);
-    letter-spacing: 2px;
-}
-
-@mixin drip-effect {
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: -20px;
-        left: 0;
-        width: 100%;
-        height: 20px;
-        background: inherit;
-        mask-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 Q10,20 20,0 T40,0 T60,0 T80,0 T100,0 V20 H0 Z' fill='black'/%3E%3C/svg%3E");
-        mask-size: 20px 20px;
-        mask-repeat: repeat-x;
-    }
-}
-
-@mixin sticker-card {
-    background: $urban-dark;
-    border: 2px solid white;
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
-    transform: rotate(var(--rotation, 0deg));
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-        transform: rotate(0deg) scale(1.02);
-        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.5);
-        z-index: 10;
-    }
-}
-
-@mixin spray-shadow($color: $neon-cyan) {
-    box-shadow: 0 0 15px $color, 0 0 30px rgba($color, 0.5);
-}
-
-@mixin neon-glow($color) {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px $color, 0 0 30px $color, 0 0 40px $color;
-}
-
-@mixin brick-texture {
-    background-image: $texture-brick;
-    background-size: cover;
-    background-blend-mode: multiply;
-    background-color: rgba($urban-brick, 0.9);
-}
-
+// Responsive Breakpoints
 @mixin respond-to($breakpoint) {
     @if $breakpoint ==mobile {
-        @media (max-width: $breakpoint-mobile) {
+        @media (max-width: $mobile) {
             @content;
         }
     }
 
     @else if $breakpoint ==tablet {
-        @media (max-width: $breakpoint-tablet) {
+        @media (max-width: $tablet) {
             @content;
         }
     }
 
     @else if $breakpoint ==desktop {
-        @media (min-width: $breakpoint-desktop) {
+        @media (min-width: $desktop) {
             @content;
         }
     }
+
+    @else if $breakpoint ==wide {
+        @media (min-width: $wide) {
+            @content;
+        }
+    }
+}
+
+// Graffiti Text Effect (3D + Drips)
+@mixin graffiti-text($color: $spray-white, $outline: $spray-black) {
+    font-family: $font-secondary; // Alfa Slab One is better for bubble letters
+    color: $color;
+    text-shadow:
+        2px 2px 0px $outline,
+        -1px -1px 0 $outline,
+        1px -1px 0 $outline,
+        -1px 1px 0 $outline,
+        1px 1px 0 $outline,
+        4px 4px 0px darken($color, 30%),
+        6px 6px 4px rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+}
+
+// Sticker Effect
+@mixin sticker-effect($rotation: 2deg) {
+    background-color: #fff;
+    padding: $spacing-sm $spacing-md;
+    box-shadow:
+        2px 2px 5px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(0, 0, 0, 0.05); // Paper texture
+    transform: rotate($rotation);
+    border: 4px solid white; // White border typical of die-cut stickers
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+
+    &:hover {
+        transform: rotate(0deg) scale(1.1);
+        box-shadow: 5px 15px 25px rgba(0, 0, 0, 0.4);
+        z-index: 20;
+    }
+}
+
+// Torn Paper Edge Clip
+@mixin torn-edge {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 98% 99%, 95% 98%, 93% 99%, 90% 98%, 88% 99%, 85% 98%,
+            80% 99%, 75% 98%, 70% 99%, 65% 98%, 60% 99%, 55% 98%, 50% 99%, 45% 98%, 40% 99%,
+            35% 98%, 30% 99%, 25% 98%, 20% 99%, 15% 98%, 10% 99%, 5% 98%, 0% 100%);
+}
+
+// Spray Can Button
+@mixin spray-button($color: $spray-red) {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: $color;
+    color: white;
+    font-family: $font-stencil;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    padding: $spacing-sm $spacing-xl;
+    border: none;
+    border-radius: 4px; // Cylindrical
+    box-shadow:
+        inset 4px 0 10px rgba(255, 255, 255, 0.3), // Highlight left
+        inset -4px 0 10px rgba(0, 0, 0, 0.3), // Shadow right
+        3px 3px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow:
+            inset 4px 0 10px rgba(255, 255, 255, 0.4),
+            inset -4px 0 10px rgba(0, 0, 0, 0.3),
+            5px 5px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    &:active {
+        transform: translateY(1px);
+        box-shadow: inset 4px 0 10px rgba(0, 0, 0, 0.4);
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin absolute-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin sticker-card($rotation: 2deg) {
+    @include sticker-effect($rotation);
 }
