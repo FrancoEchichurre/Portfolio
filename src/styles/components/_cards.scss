@@ -1,0 +1,90 @@
+@use '../abstracts' as *;
+
+.card {
+    background-color: $urban-dark;
+    padding: 1.5rem;
+    position: relative;
+    @include sticker-card;
+
+    &__preview {
+        height: 12rem;
+        background-color: #374151; // gray-700
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+
+        &-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: $font-display;
+            font-size: 1.5rem;
+            color: #6b7280; // gray-500
+        }
+    }
+
+    &__title {
+        font-family: $font-display;
+        font-size: 1.875rem;
+        margin-bottom: 1rem;
+        transition: color 0.3s;
+
+        &--neon-cyan {
+            color: $neon-cyan
+        }
+
+        &--neon-magenta {
+            color: $neon-magenta
+        }
+
+        &--neon-yellow {
+            color: $neon-yellow
+        }
+    }
+
+    &__desc {
+        font-family: $font-body;
+        color: #9ca3af; // gray-400
+        margin-bottom: 1.5rem;
+        font-size: 0.875rem;
+    }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__tape {
+        position: absolute;
+        top: -0.75rem;
+        left: 50%;
+        transform: translateX(-50%) rotate(-2deg);
+        width: 6rem;
+        height: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        z-index: 20;
+    }
+
+    &__category {
+        position: absolute;
+        right: -0.5rem;
+        top: 2.5rem;
+        background-color: $neon-yellow;
+        color: black;
+        font-weight: bold;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        transform: rotate(90deg);
+        transform-origin: bottom right;
+    }
+}

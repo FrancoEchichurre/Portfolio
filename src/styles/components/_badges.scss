@@ -1,0 +1,35 @@
+@use '../abstracts' as *;
+
+.badge {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #374151;
+    font-family: monospace;
+    font-size: 0.75rem;
+}
+
+.skill-badge {
+    background-color: $urban-brick;
+    color: white;
+    font-family: $font-display;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid $neon-cyan;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    cursor: default;
+
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+
+    &--dev {
+        grid-column: span 2;
+        background-color: $neon-yellow;
+        color: black;
+        border-left: 4px solid black;
+        transform: rotate(2deg);
+    }
+}

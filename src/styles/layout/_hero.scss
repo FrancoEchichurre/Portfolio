@@ -1,0 +1,84 @@
+@use '../abstracts' as *;
+
+.hero {
+    height: 100vh;
+    width: 100%;
+    background-image: $texture-brick;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    &__content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+    }
+
+    &__title {
+        font-family: $font-display;
+        font-size: 3.75rem;
+        color: white;
+        transform: rotate(-2deg);
+
+        @include respond-to(tablet) {
+            font-size: 6rem;
+        }
+    }
+
+    &__name-highlight {
+        @include neon-glow($neon-cyan);
+    }
+
+    &__gradient-text {
+        background: linear-gradient(to right, $neon-cyan, $neon-magenta);
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-left: 0;
+
+        @include respond-to(tablet) {
+            margin-left: 1rem;
+        }
+    }
+
+    &__subtitle {
+        font-family: $font-graffiti;
+        font-size: 1.875rem;
+        color: $neon-yellow;
+        margin-top: 1rem;
+        letter-spacing: 0.1em;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 0.5rem 1rem;
+        transform: rotate(1deg);
+        display: inline-block;
+
+        @include respond-to(tablet) {
+            font-size: 3rem;
+        }
+    }
+
+    &__tagline {
+        font-family: 'Audio Wide', sans-serif; // Make sure this font is available or fallback
+        color: #d1d5db;
+        margin-top: 1.5rem;
+        font-size: 1.25rem;
+        letter-spacing: 0.1em;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 3rem;
+        justify-content: center;
+    }
+}

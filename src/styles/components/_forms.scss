@@ -1,0 +1,35 @@
+@use '../abstracts' as *;
+
+.form-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @include respond-to(tablet) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.input-field {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
+    color: white;
+    font-family: $font-display;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+
+    &::placeholder {
+        color: #6b7280;
+    }
+
+    &:focus {
+        border-color: $neon-magenta;
+    }
+}
+
+.textarea-field {
+    @extend .input-field;
+    resize: none;
+}

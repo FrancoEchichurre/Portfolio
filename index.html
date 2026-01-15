@@ -1,51 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio - Inicio</title>
-    <!-- NOTA: Debes compilar el SCSS a CSS para ver los estilos -->
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-
-<body>
-    <header class="header">
-        <div class="header__container">
-            <a href="index.html" class="header__logo">Portafolio</a>
-            <nav class="header__nav">
-                <ul class="header__list">
-                    <li><a href="index.html" class="header__link header__link--active">Inicio</a></li>
-                    <li><a href="pages/projects.html" class="header__link">Proyectos</a></li>
-                    <li><a href="pages/about.html" class="header__link">Sobre Mí</a></li>
-                    <li><a href="pages/contact.html" class="header__link">Contacto</a></li>
-                    <li><a href="pages/login.html" class="header__link">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero"
-            style="min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center;">
-            <div class="container">
-                <h1 class="text-gradient">Hola, soy Franco Echichurre</h1>
-                <p>Desarrollador Web Frontend & Backend</p>
-                <div style="margin-top: 2rem;">
-                    <a href="pages/projects.html" class="btn btn--primary">Ver Proyectos</a>
-                    <a href="pages/contact.html" class="btn btn--secondary">Contactame</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer__container">
-            <p class="footer__text">&copy; 2025 Mi Portafolio. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <script type="module" src="js/main.js"></script>
-</body>
-
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Franco Echichurre | Urban Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Inter:wght@400;600;800&family=Permanent+Marker&family=Roboto:wght@400;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

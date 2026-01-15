@@ -1,0 +1,56 @@
+@use '../abstracts' as *;
+
+.section {
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+
+    &--dark {
+        background-color: $urban-dark;
+    }
+
+    &--brick {
+        background-image: $texture-brick;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    &--concrete {
+        background-image: $texture-concrete;
+        background-size: cover;
+    }
+
+    &__container {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 1rem;
+        padding-left: 1rem;
+
+        @include respond-to(tablet) {
+            max-width: 768px;
+        }
+
+        @include respond-to(desktop) {
+            max-width: 1024px;
+        }
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: 4rem;
+
+        &-title {
+            font-family: $font-graffiti;
+            font-size: 3rem;
+            color: white;
+        }
+
+        &-subtitle {
+            font-family: $font-display;
+            color: #6b7280;
+            font-size: 1.875rem;
+            margin-left: 1rem;
+        }
+    }
+}

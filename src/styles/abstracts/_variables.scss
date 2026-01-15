@@ -1,0 +1,25 @@
+// Colores Urbanos
+$urban-dark: #1a1a1a;
+$urban-brick: #3d2f2f;
+$neon-cyan: #00ff88;
+$neon-yellow: #ffd700;
+$neon-magenta: #ff006e;
+$spray-white: #f0f0f0;
+
+// Fuentes
+$font-display: "Rubik Mono One", "Bebas Neue", "Alfa Slab One", cursive;
+$font-body: "Inter", "Roboto", sans-serif;
+$font-graffiti: "Permanent Marker", cursive;
+
+// Texturas (Placeholders)
+$texture-brick: url('https://images.unsplash.com/photo-1533038590317-7f4d37a28348?q=80&w=2699&auto=format&fit=crop');
+$texture-concrete: url('https://images.unsplash.com/photo-1518117625-72251a1ca4d6?q=80&w=2574&auto=format&fit=crop');
+$texture-asphalt: url('https://images.unsplash.com/photo-1518117625-72251a1ca4d6?q=80&w=2574&auto=format&fit=crop'); // Same as concrete for now
+
+// Spacing
+$spacing-unit: 8px;
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;

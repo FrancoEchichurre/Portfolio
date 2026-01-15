@@ -1,0 +1,72 @@
+@use 'variables' as *;
+
+@mixin graffiti-text($color: $spray-white) {
+    font-family: $font-graffiti;
+    color: $color;
+    text-shadow: 2px 2px 0px black, 4px 4px 0px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+@mixin drip-effect {
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        background: inherit;
+        mask-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 Q10,20 20,0 T40,0 T60,0 T80,0 T100,0 V20 H0 Z' fill='black'/%3E%3C/svg%3E");
+        mask-size: 20px 20px;
+        mask-repeat: repeat-x;
+    }
+}
+
+@mixin sticker-card {
+    background: $urban-dark;
+    border: 2px solid white;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+    transform: rotate(var(--rotation, 0deg));
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: rotate(0deg) scale(1.02);
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+    }
+}
+
+@mixin spray-shadow($color: $neon-cyan) {
+    box-shadow: 0 0 15px $color, 0 0 30px rgba($color, 0.5);
+}
+
+@mixin neon-glow($color) {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px $color, 0 0 30px $color, 0 0 40px $color;
+}
+
+@mixin brick-texture {
+    background-image: $texture-brick;
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: rgba($urban-brick, 0.9);
+}
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint ==mobile {
+        @media (max-width: $breakpoint-mobile) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==tablet {
+        @media (max-width: $breakpoint-tablet) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint ==desktop {
+        @media (min-width: $breakpoint-desktop) {
+            @content;
+        }
+    }
+}
