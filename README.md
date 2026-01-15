@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Necesito que reconstruyas COMPLETAMENTE mi portfolio desde cero con una estética de GRAFFITI y STREET ART auténtica.
 
 INFORMACIÓN:
