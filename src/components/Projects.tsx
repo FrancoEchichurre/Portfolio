@@ -1,39 +1,65 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Dumbbell, Sparkles, ShoppingBag } from 'lucide-react';
+import { ProjectModal } from './ProjectModal';
 
 const projects = [
     {
+        id: 1,
         title: "MOVE",
-        desc: "Tu cuerpo es tu templo. Sitio institucional de alto rendimiento.",
-        stack: ["React", "Node", "Mongo"],
+        description: "Tu cuerpo es tu templo. Sitio institucional de alto rendimiento.",
+        tech: ["React", "Node", "Mongo"],
         tag: "WEB SITE",
         theme: "poster--gym",
-        imageColor: "#ff3333",
-        demoUrl: "https://msc-gym.vercel.app/"
+        color: "#ff3333",
+        demoUrl: "https://msc-gym.vercel.app/",
+        bg: "#1a1a1a",
+        type: "Fitness App",
+        icon: Dumbbell,
+        screenshot: "/images/projects/move-full.png"
     },
     {
+        id: 2,
         title: "ROSSANA ALTEZ",
-        desc: "Expande tu mente. Plataforma educativa para el alma.",
-        stack: ["React", "Express", "Mongo"],
+        description: "Expande tu mente. Plataforma educativa para el alma.",
+        tech: ["React", "Express", "Mongo"],
         tag: "EDUCACIÓN",
         theme: "poster--zen",
-        imageColor: "#9933ff",
-        demoUrl: "https://www.rossanaaltez.com/"
+        color: "#9933ff",
+        demoUrl: "https://www.rossanaaltez.com/",
+        bg: "#fdfbf7",
+        type: "Wellness Platform",
+        icon: Sparkles,
+        screenshot: "/images/projects/rossana-full.png"
     },
     {
+        id: 3,
         title: "VICTOR STORE",
-        desc: "Pisando fuerte. E-commerce de cultura sneaker.",
-        stack: ["MERN Stack", "Tailwind"],
+        description: "Pisando fuerte. E-commerce de cultura sneaker.",
+        tech: ["MERN Stack", "Tailwind"],
         tag: "E-COMMERCE",
         theme: "poster--sneaker",
-        imageColor: "#ffcc00",
-        demoUrl: "https://victor-store-two.vercel.app/"
+        color: "#ffcc00",
+        demoUrl: "https://victor-store-two.vercel.app/",
+        bg: "#0a0a0a",
+        type: "E-Commerce",
+        icon: ShoppingBag,
+        screenshot: "/images/projects/victor-full.png"
     }
 ];
 
 export const Projects = () => {
-    const handleGoLive = (url?: string) => {
+    const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleGoLive = (e: React.MouseEvent, url?: string) => {
+        e.stopPropagation();
         if (url) window.open(url, '_blank');
+    };
+
+    const openProject = (project: typeof projects[0]) => {
+        setSelectedProject(project);
+        setIsModalOpen(true);
     };
 
     return (
@@ -54,6 +80,8 @@ export const Projects = () => {
                         transition={{ delay: index * 0.2 }}
                         whileHover={{ y: -10, scale: 1.02, rotateZ: index % 2 === 0 ? 1 : -1 }}
                         className={`poster ${project.theme}`}
+                        onClick={() => openProject(project)}
+                        style={{ cursor: 'pointer' }}
                     >
                         {/* Tape corners */}
                         <div className="tape tape--tl"></div>
@@ -65,7 +93,7 @@ export const Projects = () => {
                             <span className="poster__tag">{project.tag}</span>
                         </div>
 
-                        <div className="poster__image-area" style={{ backgroundColor: project.imageColor }}>
+                        <div className="poster__image-area" style={{ backgroundColor: project.color }}>
                             <div className="poster__image-placeholder">
                                 SCREENSHOT
                             </div>
@@ -73,10 +101,10 @@ export const Projects = () => {
 
                         <div className="poster__content">
                             <h3 className="poster__title">{project.title}</h3>
-                            <p className="poster__desc">{project.desc}</p>
+                            <p className="poster__desc">{project.description}</p>
 
                             <div className="poster__stack">
-                                {project.stack.map(tech => (
+                                {project.tech.map(tech => (
                                     <span key={tech} className="spray-tag">{tech}</span>
                                 ))}
                             </div>
@@ -85,11 +113,14 @@ export const Projects = () => {
                             <div className="poster__actions">
                                 <button
                                     className="btn-spray btn-spray--black"
-                                    onClick={() => handleGoLive(project.demoUrl)}
+                                    onClick={(e) => handleGoLive(e, project.demoUrl)}
                                 >
                                     <ExternalLink size={14} /> DEMO
                                 </button>
-                                <button className="btn-spray btn-spray--outline">
+                                <button
+                                    className="btn-spray btn-spray--outline"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
                                     <Github size={14} /> CODE
                                 </button>
                             </div>
@@ -97,6 +128,12 @@ export const Projects = () => {
                     </motion.div>
                 ))}
             </div>
+
+            <ProjectModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                project={selectedProject}
+            />
         </section>
     );
 };

@@ -28,8 +28,8 @@ export const ContactSidebar = ({ isOpen, onClose }: ContactSidebarProps) => {
 
     const handleWhatsApp = () => {
         // Reemplaza con tu número de WhatsApp (formato internacional sin +)
-        const phoneNumber = '59899123456'; // Ejemplo: Uruguay
-        const message = encodeURIComponent('¡Hola Franco! Vi tu portfolio y me gustaría contactarte.');
+        const phoneNumber = '59895063978'; // Ejemplo: Uruguay
+        const message = encodeURIComponent('¡Hola Franco! Vi tu portfolio y me gustaría consultarte por un proyecto.');
         window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
     };
 
