@@ -1,0 +1,82 @@
+@use '../abstracts' as *;
+
+.contact-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+
+    width: 140px;  // Rectangular por defecto
+    height: 50px;
+    background: #4a4a4a;
+    border: 3px solid #666;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
+    &__text {
+        font-family: $font-stencil;
+        font-size: 0.9rem;
+        color: white;
+        letter-spacing: 1px;
+    }
+
+    &__tape {
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 15px;
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        pointer-events: none;
+    }
+
+    &--open {
+        width: 60px;   // Se convierte en cuadrado
+        height: 60px;  // Cuadrado cuando está abierto
+        background: $spray-green;
+        border-color: darken($spray-green, 10%);
+        box-shadow: 0 0 15px rgba($spray-green, 0.5);
+
+        .contact-toggle__content {
+            color: black;
+        }
+        
+        .contact-toggle__tape {
+            width: 30px; // Cinta más pequeña cuando es cuadrado
+        }
+    }
+
+    &:hover {
+        box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+        transform: translateY(-2px);
+    }
+
+    // Responsive
+    @include respond-to(mobile) {
+        width: 110px;
+        height: 45px;
+        
+        &--open {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .contact-toggle__text {
+            font-size: 0.75rem;
+        }
+    }
+}

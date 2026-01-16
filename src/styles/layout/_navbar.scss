@@ -40,6 +40,28 @@
         }
     }
 
+    &__menu {
+        @include respond-to(tablet) {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 90;
+            border-left: 2px solid rgba($spray-blue, 0.2);
+
+            &--open {
+                right: 0;
+            }
+        }
+    }
+
     &__links {
         display: none;
 
@@ -47,6 +69,13 @@
             display: flex;
             gap: $spacing-lg;
             list-style: none;
+        }
+
+        @include respond-to(tablet) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: $spacing-xl;
         }
     }
 
@@ -57,6 +86,10 @@
         color: rgba(255, 255, 255, 0.7);
         position: relative;
         transition: color 0.2s;
+
+        @include respond-to(tablet) {
+            font-size: 2rem;
+        }
 
         &:hover {
             color: $spray-white;
@@ -86,6 +119,8 @@
         flex-direction: column;
         gap: 6px;
         cursor: pointer;
+        position: relative;
+        z-index: 100;
 
         @include respond-to(desktop) {
             display: none;
@@ -97,6 +132,22 @@
             background-color: $spray-white;
             border-radius: 2px;
             transition: all 0.3s;
+        }
+
+        &--open {
+            .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+                background-color: $spray-red;
+            }
+
+            .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+                background-color: $spray-red;
+            }
         }
 
         &:hover .bar {

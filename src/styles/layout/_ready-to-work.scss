@@ -1,0 +1,187 @@
+@use '../abstracts' as *;
+
+.ready-to-work {
+    position: relative;
+    padding: $spacing-xxl $spacing-md;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #1a1a1a;
+
+    &__wall {
+        @include absolute-cover;
+        background-image: url('/src/assets/icons/ladrillos.png');
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.3) grayscale(0.5);
+        z-index: 1;
+    }
+
+    &__overlay {
+        @include absolute-cover;
+        background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: 2;
+    }
+
+    &__container {
+        position: relative;
+        z-index: 10;
+        max-width: 900px;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xl;
+    }
+
+    &__title {
+        font-family: 'Alfa Slab One', cursive;
+        font-size: clamp(2rem, 5vw, 4rem);
+        color: white;
+        text-shadow: 4px 4px 0 $spray-black;
+        line-height: 1.1;
+        margin-bottom: $spacing-md;
+
+        .text-spray-blue {
+            color: $spray-blue;
+            text-shadow: 4px 4px 0 $spray-black;
+        }
+    }
+
+    &__intro {
+        font-family: $font-body;
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    &__details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-xl;
+        text-align: left;
+        margin-top: $spacing-lg;
+
+        @include respond-to(tablet) {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+    }
+
+    &__subtitle {
+        font-family: $font-stencil;
+        font-size: 1.2rem;
+        color: $spray-yellow;
+        margin-bottom: $spacing-md;
+        letter-spacing: 2px;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        li {
+            font-family: $font-body;
+            color: white;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            @include respond-to(tablet) {
+                justify-content: center;
+            }
+        }
+
+        .spray-bullet {
+            color: $spray-green;
+            font-weight: bold;
+        }
+    }
+
+    &__availability {
+        font-family: $font-body;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 500;
+        opacity: 0.9;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: center;
+        gap: $spacing-xl;
+        margin-top: $spacing-xl;
+
+        @include respond-to(tablet) {
+            flex-direction: column;
+            align-items: center;
+            gap: $spacing-lg;
+        }
+    }
+}
+
+// Reuse sticker logic with variations
+.btn-sticker {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: $spacing-md $spacing-xxl;
+    font-family: $font-tag;
+    font-size: 1.3rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &__tape {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(2px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        pointer-events: none;
+    }
+
+    &--blue {
+        background-color: $spray-blue;
+        color: white;
+        transform: rotate(-2deg);
+
+        &:hover {
+            background-color: lighten($spray-blue, 10%);
+            transform: scale(1.05) rotate(0deg);
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    &--green {
+        background-color: $spray-green;
+        color: black;
+        transform: rotate(2deg);
+
+        &:hover {
+            background-color: lighten($spray-green, 10%);
+            transform: scale(1.05) rotate(0deg);
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}

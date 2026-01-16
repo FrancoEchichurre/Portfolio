@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Ink Cursor Styles */
+.ink-cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+
+.ink-ripple {
+    position: fixed;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    border-width: 3px;
+    border-style: solid;
+    animation: inkExpand 1s ease-out forwards;
+}
+
+@keyframes inkExpand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.6;
+    }
+
+    100% {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+    }
+}
+
+/* Hide default cursor on desktop */
+@media (min-width: 1024px) {
+
+    body,
+    a,
+    button,
+    input,
+    textarea {
+        cursor: none !important;
+    }
+}

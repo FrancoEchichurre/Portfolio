@@ -3,32 +3,39 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
     {
-        title: "GYM ZONE",
+        title: "MOVE",
         desc: "Tu cuerpo es tu templo. Sitio institucional de alto rendimiento.",
         stack: ["React", "Node", "Mongo"],
         tag: "WEB SITE",
         theme: "poster--gym",
-        imageColor: "#ff3333"
+        imageColor: "#ff3333",
+        demoUrl: "https://msc-gym.vercel.app/"
     },
     {
-        title: "HOLISTICOURSE",
+        title: "ROSSANA ALTEZ",
         desc: "Expande tu mente. Plataforma educativa para el alma.",
         stack: ["React", "Express", "Mongo"],
         tag: "EDUCACIÓN",
         theme: "poster--zen",
-        imageColor: "#9933ff"
+        imageColor: "#9933ff",
+        demoUrl: "https://www.rossanaaltez.com/"
     },
     {
-        title: "URBAN KICKS",
+        title: "VICTOR STORE",
         desc: "Pisando fuerte. E-commerce de cultura sneaker.",
         stack: ["MERN Stack", "Tailwind"],
         tag: "E-COMMERCE",
         theme: "poster--sneaker",
-        imageColor: "#ffcc00"
+        imageColor: "#ffcc00",
+        demoUrl: "https://victor-store-two.vercel.app/"
     }
 ];
 
 export const Projects = () => {
+    const handleGoLive = (url?: string) => {
+        if (url) window.open(url, '_blank');
+    };
+
     return (
         <section className="projects-section" id="projects">
             <div className="section-header">
@@ -74,8 +81,12 @@ export const Projects = () => {
                                 ))}
                             </div>
 
+
                             <div className="poster__actions">
-                                <button className="btn-spray btn-spray--black">
+                                <button
+                                    className="btn-spray btn-spray--black"
+                                    onClick={() => handleGoLive(project.demoUrl)}
+                                >
                                     <ExternalLink size={14} /> DEMO
                                 </button>
                                 <button className="btn-spray btn-spray--outline">

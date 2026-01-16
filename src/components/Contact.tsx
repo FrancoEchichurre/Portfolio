@@ -4,6 +4,14 @@ import { Send, Github, Linkedin, Mail } from 'lucide-react';
 export const Contact = () => {
     return (
         <section className="contact-section" id="contact">
+            {/* Decorative Paint Splatters - Varied distribution */}
+            <img src="/src/assets/icons/pintura3.png" alt="" className="paint-splatter paint-splatter--contact-1" />
+            <img src="/src/assets/icons/pintura7.png" alt="" className="paint-splatter paint-splatter--contact-2" />
+            <img src="/src/assets/icons/pintura1.png" alt="" className="paint-splatter paint-splatter--contact-3" />
+            <img src="/src/assets/icons/pintura5.png" alt="" className="paint-splatter paint-splatter--contact-4" />
+            <img src="/src/assets/icons/pintura2.png" alt="" className="paint-splatter paint-splatter--contact-5" />
+            <img src="/src/assets/icons/pintura6.png" alt="" className="paint-splatter paint-splatter--contact-6" />
+
             <div className="section_header">
                 <h2 className="section-title text-center text-white">
                     HIT ME <span className="text-spray-blue">UP</span>

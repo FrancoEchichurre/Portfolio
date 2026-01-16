@@ -9,6 +9,10 @@
     @include flex-center;
     flex-direction: column;
 
+    @include respond-to(mobile) {
+        padding: $spacing-xl * 3 0;
+    }
+
     &__texture {
         @include absolute-cover;
         background-image: $texture-concrete;
@@ -31,6 +35,10 @@
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: $spacing-xl;
     text-shadow: 2px 2px 0 $bg-dark;
+
+    @include respond-to(mobile) {
+        text-align: center;
+    }
 }
 
 .about-content {
@@ -62,6 +70,10 @@
     max-width: 350px;
     margin-bottom: $spacing-lg;
     position: relative;
+
+    @include respond-to(mobile) {
+        max-width: 280px;
+    }
 
     &:hover {
         transform: rotate(0deg) scale(1.02);
@@ -104,8 +116,12 @@
 }
 
 .about-bio {
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
+
+    @include respond-to(desktop) {
+        text-align: left;
+    }
 
     p {
         font-family: $font-body;
@@ -115,6 +131,11 @@
         padding: $spacing-md;
         border-radius: 4px;
         border-left: 3px solid $spray-purple;
+
+        @include respond-to(mobile) {
+            font-size: 1rem;
+            padding: $spacing-sm $spacing-md;
+        }
     }
 }
 
@@ -136,6 +157,11 @@
     padding: $spacing-lg;
     border-radius: 8px;
     border: 2px dashed rgba(255, 255, 255, 0.2);
+
+    @include respond-to(mobile) {
+        padding: $spacing-md;
+        text-align: center;
+    }
 }
 
 .skills-title {
@@ -152,6 +178,10 @@
     flex-wrap: wrap;
     gap: $spacing-md;
     justify-content: center;
+
+    @include respond-to(desktop) {
+        justify-content: flex-start;
+    }
 }
 
 .sticker {
@@ -162,6 +192,11 @@
     border: 2px solid white;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     cursor: default;
+
+    @include respond-to(mobile) {
+        font-size: 0.8rem;
+        padding: $spacing-xs $spacing-sm;
+    }
 
     &--wet-paint {
         background: $bg-asphalt;

@@ -1,9 +1,10 @@
 @use '../abstracts' as *;
 
 .projects-section {
+    display: none; // Hidden per user request
     padding: $spacing-giant $spacing-md;
-    background-color: $bg-brick; // Using brick background for the "Wall"
-    background-image: $texture-brick; // Overlay authentic texture
+    background-color: $bg-brick;
+    background-image: $texture-brick;
     background-blend-mode: multiply;
     min-height: 100vh;
     @include flex-center;

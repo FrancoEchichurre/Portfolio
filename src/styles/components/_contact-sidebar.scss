@@ -1,0 +1,232 @@
+@use '../abstracts' as *;
+
+.contact-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+}
+
+.btn-whatsapp {
+    width: 100%;
+    margin-top: 4px;
+    padding: 12px 24px;
+    background: #25D366; // Verde WhatsApp oficial
+    color: white;
+    border: 2px solid #1da851;
+    border-radius: 12px;
+    font-family: $font-body;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: rotate(-1deg);
+
+    &:hover {
+
+        background: lighten(#25D366, 5%);
+        box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.5);
+        transform: scale(1.02) rotate(0deg);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+
+.contact-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 400px;
+    background-color: #222;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('/src/assets/icons/ladrillos.png'); // Reuse brick texture or concrete
+    background-size: cover;
+    background-position: center;
+    border-left: 4px solid #333;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-xl;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+
+    @include respond-to(tablet) {
+        max-width: 350px;
+    }
+
+    @include respond-to(mobile) {
+        max-width: 100%;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: $spacing-xl;
+    }
+
+    &__title {
+        font-family: $font-secondary;
+        font-size: 2.5rem;
+        line-height: 0.9;
+        color: white;
+        max-width: 250px;
+
+        .text-spray {
+            color: $spray-green;
+            display: block;
+        }
+    }
+
+    &__close {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xl;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+    }
+
+    &__socials {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-sm;
+        padding-top: $spacing-lg;
+        border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    }
+
+    &__tape {
+        position: absolute;
+        width: 80px;
+        height: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: -1;
+
+        &--1 {
+            top: 10%;
+            right: -20px;
+            transform: rotate(45deg);
+        }
+
+        &--2 {
+            bottom: 15%;
+            left: -20px;
+            transform: rotate(-30deg);
+        }
+    }
+}
+
+.form-sticker-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+        font-family: $font-stencil;
+        font-size: 0.8rem;
+        color: $spray-green;
+        letter-spacing: 1px;
+    }
+
+    input,
+    textarea {
+        background: white;
+        border: none;
+        padding: 12px;
+        font-family: $font-body;
+        font-size: 1rem;
+        color: #333;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+        transform: rotate(-0.5deg);
+        border-radius: 2px;
+
+        &:focus {
+            outline: 2px solid $spray-green;
+            transform: rotate(0deg);
+        }
+    }
+
+    textarea {
+        resize: none;
+        border-radius: 0 0 15px 0; // Slightly torn corner look
+    }
+}
+
+.btn-spray-send {
+    margin-top: $spacing-sm;
+    background: $spray-green;
+    color: black;
+    border: none;
+    padding: 15px;
+    font-family: $font-stencil;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 darken($spray-green, 20%);
+
+    &:hover {
+        background: lighten($spray-green, 10%);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+    font-family: $font-tag;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: all 0.2s;
+
+    &:hover {
+        opacity: 1;
+        color: $spray-green;
+        transform: translateX(5px);
+    }
+}

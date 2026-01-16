@@ -16,6 +16,14 @@ export const About = () => {
         <section className="about-section" id="about">
             <div className="about-section__texture"></div>
 
+            {/* Decorative Paint Splatters - Varied distribution */}
+            <img src="/src/assets/icons/pintura2.png" alt="" className="paint-splatter paint-splatter--about-1" />
+            <img src="/src/assets/icons/pintura6.png" alt="" className="paint-splatter paint-splatter--about-2" />
+            <img src="/src/assets/icons/pintura4.png" alt="" className="paint-splatter paint-splatter--about-3" />
+            <img src="/src/assets/icons/pintura7.png" alt="" className="paint-splatter paint-splatter--about-4" />
+            <img src="/src/assets/icons/pintura1.png" alt="" className="paint-splatter paint-splatter--about-5" />
+            <img src="/src/assets/icons/pintura5.png" alt="" className="paint-splatter paint-splatter--about-6" />
+
             <div className="container">
                 <motion.h2
                     initial={{ opacity: 0, scale: 0.9 }}
