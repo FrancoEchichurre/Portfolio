@@ -17,6 +17,7 @@ function App() {
       <ContactSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <Hero />
       <About />
+      <Projects />
       <ReadyToWork onOpenContact={() => setIsSidebarOpen(true)} />
     </div>
   );
