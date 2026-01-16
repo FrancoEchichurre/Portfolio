@@ -175,14 +175,6 @@ export const Hero = () => {
 
 
                                 <div className="tablet-home">
-                                    <div className="tablet-home__header">
-                                        <img
-                                            src="/images/logo-portfolio.png"
-                                            alt="Logo Portfolio"
-                                            className="tablet-logo"
-                                        />
-                                    </div>
-
                                         <div className="app-grid">
                                             {projects.map((project, index) => (
                                                 <motion.div
