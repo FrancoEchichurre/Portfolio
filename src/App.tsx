@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
-import { Projects } from './components/Projects';
 import { ReadyToWork } from './components/ReadyToWork';
 import { InkCursor } from './components/InkCursor';
 import { ContactToggle } from './components/ContactToggle';
@@ -17,7 +16,6 @@ function App() {
       <ContactSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <Hero />
       <About />
-      <Projects />
       <ReadyToWork onOpenContact={() => setIsSidebarOpen(true)} />
     </div>
   );
