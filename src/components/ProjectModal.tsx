@@ -15,6 +15,7 @@ interface Project {
     tag: string;
     demoUrl?: string;
     screenshot?: string;
+    icon?: any;
 }
 
 interface ProjectModalProps {
