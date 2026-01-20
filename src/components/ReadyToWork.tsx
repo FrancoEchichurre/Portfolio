@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, MessageSquare } from 'lucide-react';
+import { CVModal } from './CVModal';
 
 interface ReadyToWorkProps {
     onOpenContact: () => void;
 }
 
 export const ReadyToWork = ({ onOpenContact }: ReadyToWorkProps) => {
+    const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+
     return (
         <section className="ready-to-work">
             <div className="ready-to-work__wall"></div>
@@ -65,11 +69,11 @@ export const ReadyToWork = ({ onOpenContact }: ReadyToWorkProps) => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.6 }}
                 >
-                    <a href="/cv.pdf" target="_blank" className="btn-sticker btn-sticker--blue">
+                    <button onClick={() => setIsCVModalOpen(true)} className="btn-sticker btn-sticker--blue">
                         <FileText size={20} />
                         <span>VER CV</span>
                         <div className="btn-sticker__tape"></div>
-                    </a>
+                    </button>
 
                     <button onClick={onOpenContact} className="btn-sticker btn-sticker--green">
                         <MessageSquare size={20} />
@@ -78,6 +82,9 @@ export const ReadyToWork = ({ onOpenContact }: ReadyToWorkProps) => {
                     </button>
                 </motion.div>
             </div>
+
+            {/* CV Modal */}
+            <CVModal isOpen={isCVModalOpen} onClose={() => setIsCVModalOpen(false)} />
         </section>
     );
 };

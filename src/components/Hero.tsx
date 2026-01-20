@@ -1,24 +1,22 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import {
-    Dumbbell,
-    Sparkles,
-    ShoppingBag
-} from 'lucide-react';
+import { Sparkles, ShoppingBag } from 'lucide-react';
 import powerIcon from '../assets/icons/power.png';
+import tcmLogo from '../assets/projects/TCM.png';
+import rossanaLogo from '../assets/projects/logo-new.png';
 
 import { ProjectModal } from './ProjectModal';
 
 const projects = [
     {
         id: 1,
-        title: "MOVE",
+        title: "Training Club Movement",
         description: "Tu cuerpo es tu templo. Sitio institucional de alto rendimiento.",
         tech: ["React", "Node", "Mongo"],
         color: "#ff3333",
         bg: "#1a1a1a",
         type: "Fitness App",
-        icon: Dumbbell,
+        logo: tcmLogo,
         theme: "poster--gym",
         tag: "WEB SITE",
         demoUrl: "https://msc-gym.vercel.app/",
@@ -32,7 +30,7 @@ const projects = [
         color: "#9933ff",
         bg: "#fdfbf7",
         type: "Wellness Platform",
-        icon: Sparkles,
+        logo: rossanaLogo,
         theme: "poster--zen",
         tag: "EDUCACIÓN",
         demoUrl: "https://www.rossanaaltez.com/",
@@ -224,11 +222,21 @@ export const Hero = () => {
                                                     <div
                                                         className="app-icon"
                                                         style={{
-                                                            backgroundColor: project.color,
-                                                            boxShadow: hoveredApp === project.id ? `0 0 15px ${project.color}` : 'none'
+                                                            backgroundColor: 'transparent',
+                                                            boxShadow: hoveredApp === project.id
+                                                                ? `0 0 20px ${project.color}, 0 0 10px ${project.color}`
+                                                                : `0 0 10px ${project.color}`
                                                         }}
                                                     >
-                                                        <project.icon size={32} color="white" />
+                                                        {project.logo ? (
+                                                            <img
+                                                                src={project.logo}
+                                                                alt={project.title}
+                                                                className={`app-icon-logo ${project.id === 1 ? 'app-icon-logo--tcm' : ''} ${project.id === 2 ? 'app-icon-logo--rossana' : ''}`}
+                                                            />
+                                                        ) : project.icon ? (
+                                                            <project.icon size={32} color="white" />
+                                                        ) : null}
                                                     </div>
                                                     <span className="app-name">{project.title}</span>
                                                 </motion.div>

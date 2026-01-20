@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, Send, MessageCircle } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { Github, Linkedin, Mail, MessageCircle } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 interface ContactSidebarProps {
     isOpen: boolean;
@@ -9,6 +9,11 @@ interface ContactSidebarProps {
 
 export const ContactSidebar = ({ isOpen, onClose }: ContactSidebarProps) => {
     const sidebarRef = useRef<HTMLDivElement>(null);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
 
     // Close on ESC
     useEffect(() => {
@@ -26,11 +31,26 @@ export const ContactSidebar = ({ isOpen, onClose }: ContactSidebarProps) => {
         return () => window.removeEventListener('keydown', handleEsc);
     }, [isOpen, onClose]);
 
-    const handleWhatsApp = () => {
+    const handleSubmitWhatsApp = (e: React.FormEvent) => {
+        e.preventDefault();
+
         // Reemplaza con tu número de WhatsApp (formato internacional sin +)
-        const phoneNumber = '59895063978'; // Ejemplo: Uruguay
-        const message = encodeURIComponent('¡Hola Franco! Vi tu portfolio y me gustaría consultarte por un proyecto.');
+        const phoneNumber = '59895063978';
+
+        // Construir el mensaje con los datos del formulario
+        const message = encodeURIComponent(
+            `🔥 *NUEVO PROYECTO EN MENTE* \n\n` +
+            `Hola Franco, vi tu web y quiero que hagamos algo juntos. \n\n` +
+            `👤 *Nombre:* ${formData.name}\n` +
+            `✉️ *Correo:* ${formData.email}\n\n` +
+            `📝 *Mensaje:* \n${formData.message}\n\n` +
+            `---`
+);
+
         window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+
+        // Limpiar formulario después de enviar
+        setFormData({ name: '', email: '', message: '' });
     };
 
     return (
@@ -61,41 +81,48 @@ export const ContactSidebar = ({ isOpen, onClose }: ContactSidebarProps) => {
 
 
                         <div className="contact-sidebar__content">
-                            <form className="contact-sidebar__form" onClick={(e) => e.stopPropagation()}>
+                            <form className="contact-sidebar__form" onSubmit={handleSubmitWhatsApp} onClick={(e) => e.stopPropagation()}>
                                 <div className="form-sticker-group">
                                     <label>TU NOMBRE *</label>
-                                    <input type="text" placeholder="GHOST_WRITER" />
+                                    <input
+                                        type="text"
+                                        placeholder="GHOST_WRITER"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        required
+                                    />
                                 </div>
                                 <div className="form-sticker-group">
                                     <label>TU EMAIL *</label>
-                                    <input type="email" placeholder="contact@zone.com" />
+                                    <input
+                                        type="email"
+                                        placeholder="contact@zone.com"
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        required
+                                    />
                                 </div>
                                 <div className="form-sticker-group">
                                     <label>MENSAJE *</label>
-                                    <textarea rows={6} placeholder="¿Qué tienes en mente?"></textarea>
+                                    <textarea
+                                        rows={6}
+                                        placeholder="¿Qué tienes en mente?"
+                                        value={formData.message}
+                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                        required
+                                    ></textarea>
                                 </div>
 
                                 <motion.button
                                     type="submit"
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="btn-spray-send"
+                                    className="btn-whatsapp"
                                 >
-                                    <span>ENVIAR</span>
-                                    <Send size={20} />
+                                    <MessageCircle size={24} />
+                                    <span>ENVIAR A WHATSAPP</span>
                                 </motion.button>
                             </form>
-
-                            {/* Botón de WhatsApp */}
-                            <motion.button
-                                onClick={handleWhatsApp}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="btn-whatsapp"
-                            >
-                                <MessageCircle size={32} />
-                                <span>WHATSAPP</span>
-                            </motion.button>
 
                             <div className="contact-sidebar__socials">
                                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">
