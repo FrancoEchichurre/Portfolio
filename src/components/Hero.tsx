@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ShoppingBag } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 import powerIcon from '../assets/icons/power.png';
 import tcmLogo from '../assets/projects/TCM.png';
 import rossanaLogo from '../assets/projects/logo-new.png';
@@ -56,7 +56,6 @@ const projects = [
 export const Hero = () => {
     const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [hoveredApp, setHoveredApp] = useState<number | null>(null);
     const [isTabletOn, setIsTabletOn] = useState(true);
     const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -65,6 +64,7 @@ export const Hero = () => {
             setIsTabletOn(false);
         }
 
+        // Update time every minute
         const timer = setInterval(() => {
             setCurrentTime(new Date());
         }, 60000);
@@ -72,25 +72,12 @@ export const Hero = () => {
         return () => clearInterval(timer);
     }, []);
 
+    // Format time to HH:MM
     const formatTime = (date: Date) => {
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+        return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
     };
 
-    const openProject = (project: typeof projects[0]) => {
-        console.log("=== DEBUG OPEN PROJECT ===");
-        console.log("Project ID:", project.id);
-        console.log("Project Title:", project.title);
-        console.log("Project Data:", project);
-        console.log("=========================");
 
-        setSelectedProject(project);
-        setIsModalOpen(true);
-
-        setTimeout(() => {
-            console.log("Modal Open State:", isModalOpen);
-            console.log("Selected Project:", selectedProject?.title);
-        }, 100);
-    };
 
     return (
         <section className="hero" id="home">
@@ -147,124 +134,92 @@ export const Hero = () => {
                     </motion.div>
                 </div>
 
-                {/* RIGHT COLUMN: Interactive Tablet */}
+                {/* RIGHT COLUMN: Interactive Phone */}
                 <motion.div
                     className="hero__right"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <div className="tablet-mockup">
-                        <div className="tablet-body">
-                            {/* Physical Hardware Details */}
-                            <div className="tablet-buttons">
-                                <div className="button button--power"></div>
-                                <div className="button button--vol-up"></div>
-                                <div className="button button--vol-down"></div>
-                            </div>
-                            <div className="tablet-antennas">
-                                <div className="antenna antenna--top"></div>
-                                <div className="antenna antenna--bottom"></div>
-                            </div>
+                    <div className="phone-mockup">
+                        {/* Phone Frame Image */}
+                        <img
+                            src="/src/assets/profile/marco-telefono.png"
+                            alt="Phone Frame"
+                            className="phone-frame-image"
+                        />
 
-                            <div className="tablet-frame">
-                                <div className="tablet-camera">
-                                    <div className="camera-lens"></div>
-                                    <div className="camera-sensor"></div>
+                        {/* Phone Screen Content */}
+                        <div className={`phone-screen ${!isTabletOn ? 'phone-screen--off' : ''}`}>
+                            {!isTabletOn && (
+                                <div className="power-overlay">
+                                    <motion.button
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        onClick={() => setIsTabletOn(true)}
+                                        className="btn-power"
+                                    >
+                                        <img src={powerIcon} alt="Power On" className="btn-power__icon" />
+                                    </motion.button>
                                 </div>
+                            )}
 
-                                {/* Tablet Home Screen */}
-                                <div className={`tablet-screen home-screen ${!isTabletOn ? 'tablet-screen--off' : ''}`}>
-                                    {!isTabletOn && (
-                                        <div className="power-overlay">
-                                            <motion.button
-                                                whileHover={{ scale: 1.1 }}
-                                                whileTap={{ scale: 0.9 }}
-                                                onClick={() => setIsTabletOn(true)}
-                                                className="btn-power"
-                                            >
-                                                <img src={powerIcon} alt="Power On" className="btn-power__icon" />
-                                            </motion.button>
-                                        </div>
-                                    )}
-                                    <div className="status-bar">
-                                        <div className="status-bar__left">
-                                            <span>{formatTime(currentTime)}</span>
-                                        </div>
-                                        <div className="status-bar__center">
-                                            <div className="pill-island"></div>
-                                        </div>
-                                        <div className="status-bar__right">
-                                            <div className="status-icons">
-                                                <Sparkles size={10} className="status-icon--glow" />
-                                                <span>5G</span>
-                                                <div className="battery-icon">
-                                                    <div className="battery-level"></div>
-                                                </div>
-                                                <span>100%</span>
+                            {/* Status Bar */}
+                            <div className="iphone-status-bar">
+                                <div className="status-bar__left">
+                                    <span className="status-time">{formatTime(currentTime)}</span>
+                                </div>
+                                <div className="status-bar__right">
+                                    <div className="status-icons">
+                                        {/* Battery Icon */}
+                                        <svg className="status-icon battery" width="25" height="12" viewBox="0 0 25 12" fill="none">
+                                            <rect x="0.5" y="1.5" width="20" height="9" rx="2" stroke="currentColor" strokeWidth="1" />
+                                            <rect x="2" y="3" width="17" height="6" rx="1" fill="currentColor" />
+                                            <rect x="21.5" y="4" width="2.5" height="4" rx="1" fill="currentColor" />
+                                        </svg>
+
+                                        <span className="battery-percent">100%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Home Screen */}
+                            <div className="iphone-home">
+                                <div className="iphone-app-grid">
+                                    {projects.map((project) => (
+                                        <motion.div
+                                            key={project.id}
+                                            className="iphone-app-wrapper"
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            onClick={() => {
+                                                setSelectedProject(project);
+                                                setIsModalOpen(true);
+                                            }}
+                                        >
+                                            <div className="iphone-app-icon">
+                                                {project.logo ? (
+                                                    <img
+                                                        src={project.logo}
+                                                        alt={project.title}
+                                                        className="iphone-app-logo"
+                                                    />
+                                                ) : project.icon ? (
+                                                    <project.icon size={28} color="white" />
+                                                ) : null}
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="tablet-home">
-                                        <div className="app-grid">
-                                            {projects.map((project) => (
-                                                <motion.div
-                                                    key={project.id}
-                                                    className="app-icon-wrapper"
-                                                    whileHover={{ scale: 1.1, y: -5 }}
-                                                    whileTap={{ scale: 0.95 }}
-                                                    onClick={() => openProject(project)}
-                                                    onMouseEnter={() => setHoveredApp(project.id)}
-                                                    onMouseLeave={() => setHoveredApp(null)}
-                                                    data-project={project.title}
-                                                >
-                                                    <div
-                                                        className="app-icon"
-                                                        style={{
-                                                            backgroundColor: 'transparent',
-                                                            boxShadow: hoveredApp === project.id
-                                                                ? `0 0 20px ${project.color}, 0 0 10px ${project.color}`
-                                                                : `0 0 10px ${project.color}`
-                                                        }}
-                                                    >
-                                                        {project.logo ? (
-                                                            <img
-                                                                src={project.logo}
-                                                                alt={project.title}
-                                                                className={`app-icon-logo ${project.id === 1 ? 'app-icon-logo--tcm' : ''} ${project.id === 2 ? 'app-icon-logo--rossana' : ''}`}
-                                                            />
-                                                        ) : project.icon ? (
-                                                            <project.icon size={32} color="white" />
-                                                        ) : null}
-                                                    </div>
-                                                    <span className="app-name">{project.title}</span>
-                                                </motion.div>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="tablet-dock">
-                                        <div className="dock-icon" style={{ background: 'linear-gradient(45deg, #12c2e9, #c471ed, #f64f59)' }}></div>
-                                        <div className="dock-icon" style={{ background: 'linear-gradient(45deg, #FF512F, #DD2476)' }}></div>
-                                        <div className="dock-icon" style={{ background: 'linear-gradient(45deg, #00b09b, #96c93d)' }}></div>
-                                        <div className="dock-icon" style={{ background: 'linear-gradient(45deg, #8E2DE2, #4A00E0)' }}></div>
-                                    </div>
-
-                                    <div className="tablet-reflection"></div>
-                                    <div className="tablet-glare"></div>
-                                    <div className="tablet-finish"></div>
+                                            <span className="iphone-app-name">{project.title}</span>
+                                        </motion.div>
+                                    ))}
                                 </div>
-
-                                <div className="tablet-home-btn"></div>
-                                <div className="tablet-mic"></div>
                             </div>
 
-                            <div className="tablet-port-area">
-                                <div className="port"></div>
-                                <div className="speaker-grill">
-                                    <span></span><span></span><span></span><span></span><span></span>
-                                </div>
+                            {/* Dock */}
+                            <div className="iphone-dock">
+                                <div className="iphone-dock-icon" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}></div>
+                                <div className="iphone-dock-icon" style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' }}></div>
+                                <div className="iphone-dock-icon" style={{ background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' }}></div>
+                                <div className="iphone-dock-icon" style={{ background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)' }}></div>
                             </div>
                         </div>
                     </div>

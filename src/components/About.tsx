@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 
 const skills = [
     { name: 'React', color: '#3366ff', rotate: -7 },
+    { name: 'Next.js', color: '#000000', rotate: -5, text: 'white' },
     { name: 'Node.js', color: '#33ff33', rotate: 3 },
     { name: 'MongoDB', color: '#00af50', rotate: -2 },
     { name: 'Express', color: '#ffffff', rotate: 5, text: 'black' },

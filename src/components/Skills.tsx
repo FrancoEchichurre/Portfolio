@@ -3,21 +3,22 @@ import { motion } from 'framer-motion';
 const skills = [
     {
         category: "FRONTEND WEAPONS", items: [
-            { name: "React.js", level: 90 },
-            { name: "Tailwind CSS", level: 95 },
-            { name: "TypeScript", level: 85 }
+            { name: "React.js" },
+            { name: "Next.js" },
+            { name: "Tailwind CSS" },
+            { name: "TypeScript" }
         ]
     },
     {
         category: "BACKEND TOOLS", items: [
-            { name: "Node.js", level: 80 },
-            { name: "Express", level: 85 }
+            { name: "Node.js" },
+            { name: "Express" }
         ]
     },
     {
         category: "DATABASE POWER", items: [
-            { name: "MongoDB", level: 80 },
-            { name: "MySQL", level: 70 }
+            { name: "MongoDB" },
+            { name: "MySQL" }
         ]
     }
 ];
@@ -41,12 +42,12 @@ export const Skills = () => {
                                     <div key={skill.name}>
                                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', fontFamily: 'monospace', fontSize: '0.875rem', color: '#d1d5db' }}>
                                             <span>{skill.name}</span>
-                                            <span>{skill.level}%</span>
+                                            <span>{skill.level}</span>
                                         </div>
                                         <div style={{ height: '1rem', backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: '9999px', overflow: 'hidden', padding: '2px' }}>
                                             <motion.div
                                                 initial={{ width: 0 }}
-                                                whileInView={{ width: `${skill.level}%` }}
+                                                whileInView={{ width: `${skill.level}` }}
                                                 transition={{ duration: 1, delay: 0.5 }}
                                                 style={{ height: '100%', background: 'linear-gradient(to right, #00ff88, #ff006e)', borderRadius: '9999px' }}
                                             ></motion.div>
