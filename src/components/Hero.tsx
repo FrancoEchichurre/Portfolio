@@ -46,7 +46,7 @@ const projects = [
     },
     {
         id: 3,
-        title: "Victor Store",
+        title: "Stride Hub",
         description: "Pisando fuerte. E-commerce de cultura sneaker.",
         tech: ["MERN Stack", "Tailwind"],
         color: "#ffcc00",
@@ -55,7 +55,7 @@ const projects = [
         icon: ShoppingBag,
         theme: "poster--sneaker",
         tag: "E-COMMERCE",
-        demoUrl: "https://victor-store-two.vercel.app/",
+        demoUrl: "https://stridehub-two.vercel.app/",
         screenshot: "/images/projects/victor-full.png"
     }
 ];
