@@ -3,22 +3,22 @@ import { motion } from 'framer-motion';
 const skills = [
     {
         category: "FRONTEND WEAPONS", items: [
-            { name: "React.js" },
-            { name: "Next.js" },
-            { name: "Tailwind CSS" },
-            { name: "TypeScript" }
+            { name: "React.js", level: "90%" },
+            { name: "Next.js", level: "85%" },
+            { name: "Tailwind CSS", level: "95%" },
+            { name: "TypeScript", level: "80%" }
         ]
     },
     {
         category: "BACKEND TOOLS", items: [
-            { name: "Node.js" },
-            { name: "Express" }
+            { name: "Node.js", level: "75%" },
+            { name: "Express", level: "75%" }
         ]
     },
     {
         category: "DATABASE POWER", items: [
-            { name: "MongoDB" },
-            { name: "MySQL" }
+            { name: "MongoDB", level: "70%" },
+            { name: "MySQL", level: "65%" }
         ]
     }
 ];
