@@ -4,6 +4,14 @@ import { ShoppingBag } from 'lucide-react';
 import powerIcon from '../assets/icons/power.png';
 import tcmLogo from '../assets/projects/TCM.png';
 import rossanaLogo from '../assets/projects/logo-new.png';
+import phoneFrame from '../assets/profile/marco-telefono.png';
+import pintura1 from '../assets/icons/pintura1.png';
+import pintura2 from '../assets/icons/pintura2.png';
+import pintura3 from '../assets/icons/pintura3.png';
+import pintura4 from '../assets/icons/pintura4.png';
+import pintura5 from '../assets/icons/pintura5.png';
+import pintura6 from '../assets/icons/pintura6.png';
+import pintura7 from '../assets/icons/pintura7.png';
 
 import { ProjectModal } from './ProjectModal';
 
@@ -85,18 +93,18 @@ export const Hero = () => {
             <div className="hero__overlay"></div>
 
             {/* Decorative Paint Splatters */}
-            <img src="/src/assets/icons/pintura1.png" alt="" className="paint-splatter paint-splatter--1" />
-            <img src="/src/assets/icons/pintura3.png" alt="" className="paint-splatter paint-splatter--2" />
-            <img src="/src/assets/icons/pintura5.png" alt="" className="paint-splatter paint-splatter--3" />
-            <img src="/src/assets/icons/pintura2.png" alt="" className="paint-splatter paint-splatter--4" />
-            <img src="/src/assets/icons/pintura1.png" alt="" className="paint-splatter paint-splatter--5" />
-            <img src="/src/assets/icons/pintura4.png" alt="" className="paint-splatter paint-splatter--6" />
-            <img src="/src/assets/icons/pintura6.png" alt="" className="paint-splatter paint-splatter--7" />
-            <img src="/src/assets/icons/pintura1.png" alt="" className="paint-splatter paint-splatter--8" />
-            <img src="/src/assets/icons/pintura4.png" alt="" className="paint-splatter paint-splatter--9" />
-            <img src="/src/assets/icons/pintura3.png" alt="" className="paint-splatter paint-splatter--10" />
-            <img src="/src/assets/icons/pintura7.png" alt="" className="paint-splatter paint-splatter--11" />
-            <img src="/src/assets/icons/pintura2.png" alt="" className="paint-splatter paint-splatter--12" />
+            <img src={pintura1} alt="" className="paint-splatter paint-splatter--1" />
+            <img src={pintura3} alt="" className="paint-splatter paint-splatter--2" />
+            <img src={pintura5} alt="" className="paint-splatter paint-splatter--3" />
+            <img src={pintura2} alt="" className="paint-splatter paint-splatter--4" />
+            <img src={pintura1} alt="" className="paint-splatter paint-splatter--5" />
+            <img src={pintura4} alt="" className="paint-splatter paint-splatter--6" />
+            <img src={pintura6} alt="" className="paint-splatter paint-splatter--7" />
+            <img src={pintura1} alt="" className="paint-splatter paint-splatter--8" />
+            <img src={pintura4} alt="" className="paint-splatter paint-splatter--9" />
+            <img src={pintura3} alt="" className="paint-splatter paint-splatter--10" />
+            <img src={pintura7} alt="" className="paint-splatter paint-splatter--11" />
+            <img src={pintura2} alt="" className="paint-splatter paint-splatter--12" />
 
             <div className="hero__container">
                 {/* LEFT COLUMN: Info & CTAs */}
@@ -144,7 +152,7 @@ export const Hero = () => {
                     <div className="phone-mockup">
                         {/* Phone Frame Image */}
                         <img
-                            src="/src/assets/profile/marco-telefono.png"
+                            src={phoneFrame}
                             alt="Phone Frame"
                             className="phone-frame-image"
                         />
