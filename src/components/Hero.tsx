@@ -100,7 +100,7 @@ export const Hero = () => {
                             <span className="hero__name-line text-spray-blue">ECHICHURRE</span>
                         </h1>
                         <div className="hero__subtitle-badge">
-                            FULL STACK DEVELOPER
+                            Desarrollador de Software Full Stack
                         </div>
                     </motion.div>
 
@@ -110,7 +110,7 @@ export const Hero = () => {
                         transition={{ delay: 0.5 }}
                         className="hero__tagline"
                     >
-                        Transformando ideas en código funcional.
+                        Webs modernas, funcionales y bien pensadas para hacer crecer tu negocio.
                     </motion.p>
 
                     <motion.div
