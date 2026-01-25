@@ -2,92 +2,106 @@
 
 .ready-to-work {
     position: relative;
-    padding: $spacing-xxl $spacing-md;
-    min-height: 80vh;
+    padding: $spacing-giant 0;
+    min-height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-color: $bg-dark;
+    background: transparent; // Let global bg show
 
     @include respond-to(mobile) {
-        padding: $spacing-xl $spacing-sm; // Reduced padding for mobile
-        min-height: auto; // Allow content to dictate height on mobile
-        padding-top: 100px;
-        padding-bottom: 100px;
+        padding: $spacing-xl $spacing-sm;
+        min-height: auto;
     }
 
+    // Background Glow
     &__glow {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at bottom center, rgba($color-primary, 0.1) 0%, transparent 60%);
+        bottom: -20%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120%;
+        height: 80%;
+        background: radial-gradient(ellipse at center, rgba($color-primary, 0.15) 0%, transparent 70%);
         pointer-events: none;
-        z-index: 0;
+        z-index: -1;
+        filter: blur(60px);
     }
 
     &__container {
         position: relative;
         z-index: 10;
-        max-width: 900px;
+        max-width: 1000px;
         width: 100%;
         text-align: center;
         display: flex;
         flex-direction: column;
         gap: $spacing-xl;
+        padding: $spacing-lg;
     }
 
     &__title {
         font-family: $font-display;
-        font-size: clamp(2rem, 5vw, 4rem);
+        font-size: clamp(2.5rem, 6vw, 4.5rem); // Bigger title
         color: white;
-        line-height: 1.1;
+        line-height: 1;
         margin-bottom: $spacing-md;
-        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -1px;
 
         .text-spray-blue {
-            @include neon-text($color-primary);
+            color: $color-primary;
+            text-shadow: 0 0 20px rgba($color-primary, 0.5);
         }
     }
 
     &__intro {
         font-family: $font-body;
         font-size: 1.1rem;
-        color: rgba(255, 255, 255, 0.8);
-        line-height: 1.6;
-        max-width: 700px;
+        color: $text-secondary;
+        line-height: 1.8;
+        max-width: 750px;
         margin: 0 auto;
+        font-weight: 300;
     }
 
     &__details {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: $spacing-xl;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-lg;
         text-align: left;
         margin-top: $spacing-lg;
 
         @include respond-to(tablet) {
             grid-template-columns: 1fr;
+            gap: $spacing-md;
         }
     }
 
     &__col {
-        padding: $spacing-lg;
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        // Enhanced Glass Card
+        @include glass-effect(0.03, 15px);
+        padding: $spacing-xl;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: transform 0.3s ease, border-color 0.3s ease;
+
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
     }
 
     &__subtitle {
         font-family: $font-display;
-        font-size: 1.2rem;
-        color: $color-secondary;
-        margin-bottom: $spacing-md;
-        letter-spacing: 2px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 8px;
+        font-size: 1.4rem;
+        color: white;
+        margin-bottom: $spacing-lg;
+        letter-spacing: 1px;
+        display: inline-block;
+        border-bottom: 2px solid $color-primary;
+        padding-bottom: 4px;
     }
 
     &__list {
@@ -95,7 +109,7 @@
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 16px;
 
         li {
             font-family: $font-body;
@@ -103,34 +117,38 @@
             font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-weight: 400;
         }
 
         .bullet {
             color: $color-primary;
             font-weight: bold;
+            font-size: 1.2rem;
         }
     }
 
     &__availability {
         font-family: $font-body;
-        color: $text-primary;
+        color: white;
         font-size: 1.1rem;
-        font-weight: 500;
+        line-height: 1.6;
         text-align: center;
-        margin-top: $spacing-md;
+        background: rgba(255, 255, 255, 0.05);
+        padding: $spacing-md;
+        border-radius: 12px;
+        border: 1px dashed rgba(255, 255, 255, 0.1);
     }
 
     &__actions {
         display: flex;
         justify-content: center;
-        gap: $spacing-xl;
+        gap: $spacing-lg;
         margin-top: $spacing-xl;
 
-        @include respond-to(tablet) {
+        @include respond-to(mobile) {
             flex-direction: column;
-            align-items: center;
-            gap: $spacing-lg;
+            width: 100%;
         }
     }
 }
@@ -138,29 +156,31 @@
 // Modern Buttons
 .btn-modern {
     position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 16px 32px;
+    gap: 10px;
+    padding: 16px 40px;
     font-family: $font-body;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
     border: none;
-    border-radius: 50px;
+    border-radius: 100px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    min-width: 180px;
 
     &--primary {
-        background: $gradient-primary;
-        color: white;
-        box-shadow: 0 4px 15px rgba($color-primary, 0.3);
+        background: $color-primary;
+        color: black;
+        box-shadow: 0 0 20px rgba($color-primary, 0.4);
 
         &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba($color-primary, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba($color-primary, 0.6);
+            background: lighten($color-primary, 5%);
         }
     }
 
@@ -172,6 +192,7 @@
         &:hover {
             background: rgba(255, 255, 255, 0.05);
             border-color: white;
+            color: $color-primary;
         }
     }
 }
