@@ -110,7 +110,7 @@ export const Hero = () => {
                         transition={{ delay: 0.5 }}
                         className="hero__tagline"
                     >
-                        Webs modernas, funcionales y bien pensadas para hacer crecer tu negocio.
+                        Webs modernas, funcionales y bien pensadas para hacer crecer tu negocio. (Tengo novia, solo hombres)
                     </motion.p>
 
                     <motion.div

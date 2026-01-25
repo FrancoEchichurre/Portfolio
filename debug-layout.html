@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Layout</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 50px;
+            background: #1a1a1a;
+            font-family: sans-serif;
+        }
+        
+        .phone-mockup {
+            position: relative;
+            width: 340px;
+            height: 680px;
+            margin: 0 auto;
+            background: #000;
+        }
+        
+        .phone-screen {
+            position: absolute;
+            top: 15%;
+            left: 14%;
+            right: 14%;
+            bottom: 14%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            border-radius: 30px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .iphone-status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0px 0;
+            color: rgba(255, 255, 255, 0.98);
+            z-index: 15;
+            pointer-events: none;
+            background: rgba(255, 0, 0, 0.3); /* Red overlay to visualize */
+        }
+        
+        .status-bar__left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: -40px;
+            background: rgba(0, 255, 0, 0.3); /* Green overlay */
+        }
+        
+        .status-bar__right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: -40px;
+            background: rgba(0, 0, 255, 0.3); /* Blue overlay */
+        }
+        
+        .iphone-home {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 50px 20px 20px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .iphone-app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 10px 0;
+            justify-items: center;
+        }
+        
+        .iphone-app-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+        }
+        
+        .iphone-app-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 10px;
+            text-align: center;
+        }
+        
+        .iphone-app-icon:hover {
+            background: rgba(255, 255, 0, 0.5);
+        }
+        
+        .clickable {
+            pointer-events: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white; text-align: center;">Debug: Phone Layout</h1>
+    <p style="color: white; text-align: center;">Red = Status Bar | Green = Left Section | Blue = Right Section (with -40px margin)</p>
+    
+    <div class="phone-mockup">
+        <div class="phone-screen">
+            <div class="iphone-status-bar">
+                <div class="status-bar__left">
+                    <span>12:00</span>
+                </div>
+                <div class="status-bar__right">
+                    <span>100%</span>
+                </div>
+            </div>
+            
+            <div class="iphone-home">
+                <div class="iphone-app-grid">
+                    <div class="iphone-app-wrapper clickable" onclick="alert('App 1 clicked!')">
+                        <div class="iphone-app-icon">App 1</div>
+                    </div>
+                    <div class="iphone-app-wrapper clickable" onclick="alert('App 2 clicked!')">
+                        <div class="iphone-app-icon">App 2</div>
+                    </div>
+                    <div class="iphone-app-wrapper clickable" onclick="alert('App 3 - Stride Hub clicked!')">
+                        <div class="iphone-app-icon">App 3<br>Stride</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="color: white; margin-top: 20px; text-align: center;">
+        <p>Try clicking on App 3 (top right). The blue section (status-bar__right) extends with margin-right: -40px</p>
+        <p>Even though the parent has pointer-events: none, the children DON'T inherit it automatically.</p>
+    </div>
+</body>
+</html>

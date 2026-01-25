@@ -152,10 +152,10 @@
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 
-    display: none; // Hidden by default (Desktop/Tablet)
+    display: none !important; // Hidden by default (Desktop/Tablet) FORCE HIDDEN
 
     @include respond-to(mobile) {
-        display: block; // Only visible on Mobile
+        display: block !important; // Only visible on Mobile
     }
 }
 
