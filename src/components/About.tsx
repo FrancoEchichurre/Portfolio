@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ProjectModal } from './ProjectModal';
 import tcmLogo from '../assets/projects/TCM.png';
@@ -126,33 +127,37 @@ export const About = () => {
                     </motion.div>
 
                     {/* Certificate Modal Overlay */}
-                    <AnimatePresence>
-                        {showCertificate && (
-                            <motion.div
-                                className="certificate-modal-overlay"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                onClick={() => setShowCertificate(false)}
-                            >
+                    {/* Certificate Modal Overlay - Portalled to Body */}
+                    {createPortal(
+                        <AnimatePresence>
+                            {showCertificate && (
                                 <motion.div
-                                    className="certificate-modal-content"
-                                    initial={{ scale: 0.8, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    exit={{ scale: 0.8, opacity: 0 }}
-                                    onClick={(e) => e.stopPropagation()}
+                                    className="certificate-modal-overlay"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => setShowCertificate(false)}
                                 >
-                                    <button
-                                        className="close-button"
-                                        onClick={() => setShowCertificate(false)}
+                                    <motion.div
+                                        className="certificate-modal-content"
+                                        initial={{ scale: 0.8, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        exit={{ scale: 0.8, opacity: 0 }}
+                                        onClick={(e) => e.stopPropagation()}
                                     >
-                                        ×
-                                    </button>
-                                    <img src={certificateImg} alt="Full Certificate" />
+                                        <button
+                                            className="close-button"
+                                            onClick={() => setShowCertificate(false)}
+                                        >
+                                            ×
+                                        </button>
+                                        <img src={certificateImg} alt="Full Certificate" />
+                                    </motion.div>
                                 </motion.div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                            )}
+                        </AnimatePresence>,
+                        document.body
+                    )}
 
                     {/* Right Column: Skills Grid */}
                     <motion.div
