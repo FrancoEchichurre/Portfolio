@@ -9,236 +9,99 @@
         justify-content: center;
         align-items: center;
 
-        padding: $spacing-giant $spacing-md;
-        background-color: $bg-brick;
-        background-image: $texture-brick;
-        background-blend-mode: multiply;
-        min-height: 100vh;
+        padding: $spacing-xl $spacing-md;
+        margin-top: $spacing-xl;
+        width: 100%;
     }
 }
 
-.wall-graffiti {
-    position: absolute;
-    top: 50px;
-    right: 20px;
-    font-family: $font-tag;
-    font-size: 3rem;
-    color: rgba(255, 255, 255, 0.1);
-    transform: rotate(-10deg);
-    pointer-events: none;
+.projects-title {
+    font-family: $font-display;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: $spacing-xl;
+    text-shadow: 0 0 10px rgba($color-primary, 0.5);
+    text-align: center;
+    letter-spacing: 2px;
 }
 
-.posters-grid {
+.projects-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: $spacing-xl;
+    grid-template-columns: 1fr; // Single column for mobile
+    gap: $spacing-lg;
     width: 100%;
-    max-width: $wide;
-    padding: $spacing-lg;
-
-    @include respond-to(desktop) {
-        grid-template-columns: repeat(3, 1fr);
-    }
 }
 
-.poster {
-    background: #f0f0f0; // Paper color
-    padding: $spacing-md;
-    box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.3),
-        0 10px 20px rgba(0, 0, 0, 0.2); // Lift off wall
+.project-card {
     position: relative;
-    transform-origin: center top;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: $spacing-lg;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    transition: all 0.3s ease;
+    overflow: hidden;
 
-    // Torn edge effect via CSS mask or clip-path could be added here if needed
-    // Simple rough border for now
-    border: 1px dashed #ccc;
-
-    &:hover {
-        z-index: 10;
-        box-shadow:
-            0 20px 30px rgba(0, 0, 0, 0.4),
-            0 0 0 4px rgba($spray-white, 0.2); // Highlight
+    // Optional: Distinct hover effect mostly for desktop, but good to have
+    &:active {
+        transform: scale(0.98);
+        background: rgba(255, 255, 255, 0.05);
     }
 
-    &__header {
+    &__logo {
+        flex-shrink: 0;
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        padding: 10px;
         display: flex;
-        justify-content: flex-end;
-        margin-bottom: $spacing-sm;
-    }
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.05);
 
-    &__tag {
-        background: $bg-dark;
-        color: white;
-        font-family: $font-stencil;
-        font-size: 0.8rem;
-        padding: 2px 8px;
-        transform: rotate(-2deg);
-    }
-
-    &__image-area {
-        height: 180px;
-        background-color: #333;
-        margin-bottom: $spacing-md;
-        @include flex-center;
-        border: 2px solid $bg-dark;
-        overflow: hidden;
-
-        .poster__image-placeholder {
-            font-family: $font-secondary;
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.5);
-            transform: rotate(-5deg);
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
     }
 
     &__title {
-        font-family: $font-secondary;
-        font-size: 2rem;
-        line-height: 0.9;
-        margin-bottom: $spacing-sm;
-        text-transform: uppercase;
-        color: $bg-dark;
+        font-family: $font-display;
+        font-size: 1.25rem;
+        color: white;
+        margin: 0;
+        letter-spacing: 1px;
     }
 
-    &__desc {
+    &__type {
         font-family: $font-body;
-        font-size: 0.9rem;
-        color: #555;
-        margin-bottom: $spacing-md;
-        line-height: 1.4;
+        font-size: 0.85rem;
+        color: $text-secondary;
+        margin: 0;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
-    &__stack {
-        display: flex;
-        flex-wrap: wrap;
-        gap: $spacing-xs;
-        margin-bottom: $spacing-lg;
-    }
-
-    &__actions {
-        display: flex;
-        gap: $spacing-sm;
-    }
-}
-
-.spray-tag {
-    font-family: $font-tag;
-    font-size: 0.8rem;
-    color: $bg-dark;
-    border: 1px solid $bg-dark;
-    padding: 2px 6px;
-    border-radius: 10px;
-}
-
-.tape {
-    position: absolute;
-    width: 40px;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    z-index: 5;
-
-    &--tl {
-        top: -5px;
-        left: -5px;
-        transform: rotate(-45deg);
-    }
-
-    &--tr {
-        top: -5px;
-        right: -5px;
-        transform: rotate(45deg);
-    }
-
-    &--bl {
-        bottom: -5px;
-        left: -5px;
-        transform: rotate(45deg);
-    }
-
-    &--br {
-        bottom: -5px;
-        right: -5px;
-        transform: rotate(-45deg);
-    }
-}
-
-.btn-spray {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 6px 12px;
-    font-family: $font-stencil;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &--black {
-        background: $bg-dark;
-        color: white;
-        border: none;
-        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
-        }
-    }
-
-    &--outline {
-        background: transparent;
-        color: $bg-dark;
-        border: 2px solid $bg-dark;
-
-        &:hover {
-            background: $bg-dark;
-            color: white;
-        }
-    }
-}
-
-// Poster Themes
-.poster--gym {
-    border-bottom: 5px solid $spray-red;
-
-    .poster__title {
-        color: $spray-red;
-        text-shadow: 1px 1px 0 $bg-dark;
-    }
-}
-
-.poster--zen {
-    border-bottom: 5px solid $spray-purple;
-    background: #fdfbf7; // More natural paper
-
-    .poster__title {
-        color: $spray-purple;
-        font-family: $font-primary;
-    }
-}
-
-.poster--sneaker {
-    border-bottom: 5px solid $spray-yellow;
-    background: #111; // Dark poster
-    color: white;
-
-    .poster__title {
-        color: $spray-yellow;
-    }
-
-    .poster__desc {
-        color: #ccc;
-    }
-
-    .poster__actions .btn-spray--outline {
-        border-color: white;
-        color: white;
-    }
-
-    .spray-tag {
-        color: $spray-yellow;
-        border-color: $spray-yellow;
+    // Arrow icon placeholder or indicator (optional)
+    &::after {
+        content: '→';
+        font-family: sans-serif;
+        color: rgba(255, 255, 255, 0.2);
+        font-size: 1.2rem;
+        margin-left: auto;
     }
 }
