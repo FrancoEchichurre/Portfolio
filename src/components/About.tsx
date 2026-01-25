@@ -57,7 +57,7 @@ const projects = [
         logo: strideHubLogo,
         theme: "poster--sneaker",
         tag: "E-COMMERCE",
-        demoUrl: "https://stride-hub.vercel.app/",
+        demoUrl: "https://stridehub.vercel.app/",
         screenshot: "/images/projects/stride-full.png"
     }
 ];
