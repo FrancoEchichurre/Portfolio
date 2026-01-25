@@ -1,0 +1,24 @@
+// Agregar esto temporalmente al final de _hero.scss para debug
+
+.phone-screen>* {
+    outline: 2px solid blue !important;
+}
+
+.phone-screen {
+    outline: 3px solid green !important;
+}
+
+.iphone-home {
+    outline: 2px solid yellow !important;
+}
+
+.iphone-app-grid {
+    outline: 2px solid orange !important;
+}
+
+.iphone-app-wrapper {
+    outline: 2px solid purple !important;
+}
+
+// Esto mostrará todos los elementos con bordes de colores
+// para ver exactamente qué está donde

@@ -7,9 +7,14 @@
 body {
     font-family: $font-body;
     background-color: $bg-dark;
-    color: white;
+    color: $text-primary;
     line-height: 1.6;
-    overflow-x: hidden; // Prevent horizontal scroll from rotated elements
+    overflow-x: hidden;
+    position: relative;
+    background-image:
+        radial-gradient(circle at 15% 50%, rgba($color-primary, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba($color-secondary, 0.08), transparent 25%);
+    background-attachment: fixed;
 }
 
 h1,
@@ -40,17 +45,20 @@ h4,
 
 // Utility classes for text
 .text-spray-red {
-    color: $spray-red;
+    color: $color-accent;
+    text-shadow: 0 0 10px rgba($color-accent, 0.5);
 }
 
 .text-spray-blue {
-    color: $spray-blue;
+    color: $color-primary;
+    text-shadow: 0 0 10px rgba($color-primary, 0.5);
 }
 
 .text-spray-green {
-    color: $spray-green;
+    color: $color-success;
+    text-shadow: 0 0 10px rgba($color-success, 0.5);
 }
 
 .text-spray-yellow {
-    color: $spray-yellow;
+    color: #ffcc00;
 }

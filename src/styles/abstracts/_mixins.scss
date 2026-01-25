@@ -121,3 +121,21 @@
 @mixin sticker-card($rotation: 2deg) {
     @include sticker-effect($rotation);
 }
+
+// Modern Mixins
+@mixin glass-effect($opacity: 0.1, $blur: 10px) {
+    background: rgba(255, 255, 255, $opacity);
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+@mixin glow-effect($color: $color-primary, $blur: 20px) {
+    box-shadow: 0 0 $blur rgba($color, 0.6);
+}
+
+@mixin neon-text($color: $color-primary) {
+    color: $color;
+    text-shadow: 0 0 5px rgba($color, 0.7), 0 0 10px rgba($color, 0.5);
+}

@@ -3,30 +3,26 @@
 .about-section {
     position: relative;
     padding: $spacing-giant 0;
-    min-height: 80vh; // Compact
-    background-color: $bg-concrete;
+    min-height: 80vh;
     overflow: hidden;
     @include flex-center;
     flex-direction: column;
 
-    @include respond-to(mobile) {
-        padding: $spacing-xl * 3 0;
-    }
-
-    &__texture {
-        @include absolute-cover;
-        background-image: $texture-concrete;
-        background-size: cover;
-        opacity: 0.5;
-        mix-blend-mode: multiply;
+    &__glow {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80vw;
+        height: 60vh;
+        background: radial-gradient(circle, rgba($color-secondary, 0.15) 0%, transparent 60%);
+        filter: blur(80px);
+        z-index: 0;
         pointer-events: none;
     }
 
     .container {
         position: relative;
-        width: 100%;
-        max-width: $wide;
-        padding: 0 $spacing-lg;
         z-index: 5;
     }
 }
@@ -34,10 +30,12 @@
 .section-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: $spacing-xl;
-    text-shadow: 2px 2px 0 $bg-dark;
+    font-family: $font-display;
+    letter-spacing: -0.02em;
+    font-weight: 800;
 
-    @include respond-to(mobile) {
-        text-align: center;
+    .text-spray-red {
+        @include neon-text($color-accent);
     }
 }
 
@@ -48,173 +46,99 @@
 
     @include respond-to(desktop) {
         grid-template-columns: 1fr 1fr;
-        align-items: center;
+        align-items: flex-start;
         gap: $spacing-giant;
     }
 }
 
-// Left Column: Polaroid
+// Left Column: Bio
 .about-profile {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.polaroid {
-    background: white;
-    padding: $spacing-md $spacing-md $spacing-xl $spacing-md;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-    transform: rotate(-3deg);
-    transition: transform 0.3s ease;
-    width: 100%;
-    max-width: 350px;
-    margin-bottom: $spacing-lg;
-    position: relative;
-
-    @include respond-to(mobile) {
-        max-width: 280px;
-    }
-
-    &:hover {
-        transform: rotate(0deg) scale(1.02);
-    }
-
-    &__image {
-        background: #ddd;
-        aspect-ratio: 1/1;
-        width: 100%;
-        @include flex-center;
-        overflow: hidden;
-        border: 1px solid #ccc;
-
-        .placeholder-img {
-            font-family: $font-stencil;
-            color: #999;
-            font-size: 2rem;
-        }
-    }
-
-    &__caption {
-        font-family: $font-tag;
-        font-size: 1.5rem;
-        color: $bg-dark;
-        text-align: center;
-        margin-top: $spacing-md;
-    }
-
-    &__tape {
-        position: absolute;
-        top: -15px;
-        left: 50%;
-        transform: translateX(-50%) rotate(2deg);
-        width: 120px;
-        height: 35px;
-        background-color: rgba(255, 255, 200, 0.6); // Masking tape yellow
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        opacity: 0.9;
-    }
-}
-
 .about-bio {
-    max-width: 450px;
-    text-align: center;
-
-    @include respond-to(desktop) {
-        text-align: left;
-    }
+    padding: $spacing-lg;
+    border-radius: 16px;
+    max-width: 500px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 
     p {
         font-family: $font-body;
         font-size: 1.1rem;
-        line-height: 1.6;
-        background: rgba(0, 0, 0, 0.6);
-        padding: $spacing-md;
-        border-radius: 4px;
-        border-left: 3px solid $spray-purple;
-
-        @include respond-to(mobile) {
-            font-size: 1rem;
-            padding: $spacing-sm $spacing-md;
-        }
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
     }
 }
 
 .badge-freelancer {
     display: inline-block;
-    background: $spray-red;
-    color: white;
-    font-family: $font-stencil;
-    padding: $spacing-xs $spacing-md;
-    transform: rotate(-2deg);
+    background: rgba($color-success, 0.1);
+    color: $color-success;
+    border: 1px solid rgba($color-success, 0.3);
+    font-family: $font-body;
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 100px;
     margin-bottom: $spacing-md;
-    font-size: 1.2rem;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px rgba($color-success, 0.2);
 }
 
-// Right Column: Wall of Stickers
+// Right Column: Skills
 .skills-wall {
-    background: rgba(0, 0, 0, 0.2);
     padding: $spacing-lg;
-    border-radius: 8px;
-    border: 2px dashed rgba(255, 255, 255, 0.2);
-
-    @include respond-to(mobile) {
-        padding: $spacing-md;
-        text-align: center;
-    }
 }
 
 .skills-title {
-    font-family: $font-stencil;
-    font-size: 2rem;
+    font-family: $font-display;
+    font-size: 1.5rem;
     margin-bottom: $spacing-lg;
-    @include graffiti-text($spray-yellow);
-    transform: rotate(-1deg);
+    color: $text-primary;
+    letter-spacing: 2px;
+    border-bottom: 2px solid $color-secondary;
     display: inline-block;
+    padding-bottom: 4px;
 }
 
-.sticker-grid {
+.skills-grid {
     display: flex;
     flex-wrap: wrap;
     gap: $spacing-md;
-    justify-content: center;
-
-    @include respond-to(desktop) {
-        justify-content: flex-start;
-    }
 }
 
-.sticker {
-    padding: $spacing-sm $spacing-md;
-    font-family: $font-secondary;
-    text-transform: uppercase;
+.skill-card {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: $font-body;
+    font-weight: 500;
     font-size: 0.9rem;
-    border: 2px solid white;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
     cursor: default;
 
-    @include respond-to(mobile) {
-        font-size: 0.8rem;
-        padding: $spacing-xs $spacing-sm;
+    span {
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
-    &--wet-paint {
-        background: $bg-asphalt;
-        color: $spray-green;
-        border-color: $spray-green;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        line-height: 1;
-        padding: $spacing-sm;
+    &--wip {
+        border-style: dashed;
+        border-color: $text-muted;
 
-        .wet-paint-badge {
-            font-size: 0.6rem;
-            background: $spray-red;
-            color: white;
-            padding: 2px 4px;
-            margin-top: 4px;
-            font-family: $font-stencil;
+        .wip-text {
+            color: $text-muted;
+            margin-right: 8px;
+        }
+
+        .wip-badge {
+            font-size: 0.7rem;
+            color: $color-accent;
+            text-transform: uppercase;
         }
     }
 }

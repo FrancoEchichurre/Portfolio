@@ -1,32 +1,23 @@
 // Colores de fondo
-$bg-dark: #0a0a0a;
+$bg-dark: #0f0f12; // Darker, smoother black
 $bg-light: #ffffff;
-$bg-brick: #8b4513;
-$bg-asphalt: #2f2f2f;
-$urban-dark: #0a0a0a;
-$urban-brick: #8b4513;
-$urban-concrete: #4a4a4a;
-$urban-asphalt: #2f2f2f;
-$neon-cyan: #00ffff;
-$neon-magenta: #ff00ff;
-$neon-yellow: #ffcc00;
-$bg-concrete: #4a4a4a;
+$bg-card: rgba(255, 255, 255, 0.05); // Glass effect base
 
-// Colores spray paint
-$spray-red: #ff3333;
-$spray-blue: #3366ff;
-$spray-green: #33ff33;
-$spray-yellow: #ffcc00;
-$spray-orange: #ff6600;
-$spray-purple: #9933ff;
-$spray-pink: #ff66cc;
-$spray-white: #ffffff;
-$spray-black: #000000;
+// Modern Palette
+$color-primary: #00f0ff; // Neon Cyan
+$color-secondary: #7000ff; // Deep Purple
+$color-accent: #ff0055; // Neon Red/Pink
+$color-success: #00ff9d; // Neon Green
+
+// Gradients
+$gradient-primary: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+$gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+$gradient-dark: linear-gradient(180deg, #0f0f12 0%, #1a1a2e 100%);
 
 // Colores de texto
 $text-primary: #ffffff;
-$text-secondary: #cccccc;
-$text-muted: #999999;
+$text-secondary: rgba(255, 255, 255, 0.7);
+$text-muted: rgba(255, 255, 255, 0.4);
 
 // Tipografías
 $font-graffiti: 'Bebas Neue', sans-serif;
@@ -69,5 +60,29 @@ $texture-asphalt: url('https://images.unsplash.com/photo-1519757656910-410ced69b
 $font-primary: $font-graffiti;
 $font-secondary: $font-stencil;
 $spacing-giant: 80px;
+
+// Legacy / Compatibility Aliases
+$spray-red: $color-accent;
+$spray-blue: $color-primary;
+$spray-green: $color-success;
+$spray-yellow: #ffcc00; // Keep original or map to a new accent
+$spray-orange: #ff6600;
+$spray-purple: $color-secondary;
+$spray-pink: #ff66cc;
+$spray-white: #ffffff;
+$spray-black: #000000;
+
+$urban-dark: $bg-dark;
+$urban-brick: #8b4513; // Fallback
+$urban-concrete: #4a4a4a;
+$urban-asphalt: #2f2f2f;
+
+$neon-cyan: $color-primary;
+$neon-magenta: $color-accent;
+$neon-yellow: $spray-yellow;
+
+$bg-brick: $urban-brick;
+$bg-asphalt: $urban-asphalt;
+$bg-concrete: $urban-concrete;
 
 // End of file

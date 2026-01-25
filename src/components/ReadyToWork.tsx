@@ -12,8 +12,7 @@ export const ReadyToWork = ({ onOpenContact }: ReadyToWorkProps) => {
 
     return (
         <section className="ready-to-work">
-            <div className="ready-to-work__wall"></div>
-            <div className="ready-to-work__overlay"></div>
+            <div className="ready-to-work__glow"></div>
 
             <div className="ready-to-work__container">
                 <motion.div
@@ -33,7 +32,7 @@ export const ReadyToWork = ({ onOpenContact }: ReadyToWorkProps) => {
 
                 <div className="ready-to-work__details">
                     <motion.div
-                        className="ready-to-work__col"
+                        className="ready-to-work__col glass-card"
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -41,15 +40,15 @@ export const ReadyToWork = ({ onOpenContact }: ReadyToWorkProps) => {
                     >
                         <h3 className="ready-to-work__subtitle">LO QUE OFREZCO:</h3>
                         <ul className="ready-to-work__list">
-                            <li><span className="spray-bullet">→</span> Desarrollo Full Stack (React + Node.js + MongoDB)</li>
-                            <li><span className="spray-bullet">→</span> Código limpio y mantenible</li>
-                            <li><span className="spray-bullet">→</span> Enfoque en UX y performance</li>
-                            <li><span className="spray-bullet">→</span> Pasión por aprender tecnologías nuevas</li>
+                            <li><span className="bullet">→</span> Desarrollo Full Stack (React + Node.js + MongoDB)</li>
+                            <li><span className="bullet">→</span> Código limpio y mantenible</li>
+                            <li><span className="bullet">→</span> Enfoque en UX y performance</li>
+                            <li><span className="bullet">→</span> Pasión por aprender tecnologías nuevas</li>
                         </ul>
                     </motion.div>
 
                     <motion.div
-                        className="ready-to-work__col"
+                        className="ready-to-work__col glass-card"
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -69,16 +68,14 @@ export const ReadyToWork = ({ onOpenContact }: ReadyToWorkProps) => {
                     viewport={{ once: true }}
                     transition={{ delay: 0.6 }}
                 >
-                    <button onClick={() => setIsCVModalOpen(true)} className="btn-sticker btn-sticker--blue">
+                    <button onClick={() => setIsCVModalOpen(true)} className="btn-modern btn-modern--primary">
                         <FileText size={20} />
                         <span>VER CV</span>
-                        <div className="btn-sticker__tape"></div>
                     </button>
 
-                    <button onClick={onOpenContact} className="btn-sticker btn-sticker--green">
+                    <button onClick={onOpenContact} className="btn-modern btn-modern--secondary">
                         <MessageSquare size={20} />
                         <span>HABLEMOS</span>
-                        <div className="btn-sticker__tape"></div>
                     </button>
                 </motion.div>
             </div>

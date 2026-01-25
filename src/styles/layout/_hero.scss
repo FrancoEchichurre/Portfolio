@@ -8,23 +8,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $bg-brick;
 
-    &__wall-texture {
-        @include absolute-cover;
-        background-image: url('/src/assets/icons/ladrillos.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: repeat;
-        filter: brightness(0.6) contrast(1.2);
+    // Modern Background Elements
+    &__glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
         z-index: 0;
+        opacity: 0.6;
+
+        &--1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba($color-primary, 0.4) 0%, transparent 70%);
+        }
+
+        &--2 {
+            bottom: -10%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba($color-secondary, 0.4) 0%, transparent 70%);
+        }
     }
 
-    &__overlay {
+    &__grid-bg {
         @include absolute-cover;
-        background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
         z-index: 1;
-        pointer-events: none;
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
     }
 
     &__container {
@@ -37,12 +54,14 @@
         flex-direction: column;
         align-items: center;
         gap: $spacing-xl;
+        padding-top: 5vh; // Extra space for mobile top
 
         @include respond-to(desktop) {
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
             padding: 0 $spacing-xl;
+            padding-top: 0; // Reset for desktop
         }
     }
 
@@ -77,31 +96,33 @@
     }
 
     &__name-line {
-        font-family: 'Alfa Slab One', cursive;
-        font-size: clamp(3rem, 6vw, 6rem);
-        color: $spray-white;
-        text-shadow:
-            3px 3px 0 $spray-black,
-            6px 6px 0 darken($spray-white, 40%);
+        font-family: $font-display;
+        font-size: clamp(4rem, 8vw, 8rem);
+        font-weight: 800;
+        color: $text-primary;
+        line-height: 0.85;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
         display: block;
 
         &.text-spray-blue {
-            color: $spray-blue;
-            text-shadow:
-                3px 3px 0 $spray-black,
-                6px 6px 0 darken($spray-blue, 30%);
+            @include neon-text($color-primary);
         }
     }
 
     &__subtitle-badge {
-        font-family: $font-stencil;
-        font-size: clamp(1rem, 2vw, 1.5rem);
-        color: $spray-yellow;
-        background: rgba(0, 0, 0, 0.6);
-        padding: 4px 12px;
+        font-family: $font-body;
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+        color: $color-primary;
+        background: rgba($color-primary, 0.1);
+        border: 1px solid rgba($color-primary, 0.3);
+        padding: 6px 16px;
         display: inline-block;
-        transform: skew(-10deg);
-        letter-spacing: 2px;
+        border-radius: 100px;
+        letter-spacing: 3px;
+        font-weight: 600;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 20px rgba($color-primary, 0.2);
     }
 
     &__tagline {
@@ -142,6 +163,7 @@
 
     // --- RIGHT COLUMN (TABLET) ---
     &__right {
+        position: relative;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -158,19 +180,14 @@
         position: relative;
         width: 340px;
         height: 680px;
-        transform-style: preserve-3d;
+        // transform-style: preserve-3d;
         transition: transform 0.3s ease;
-        animation: float 6s ease-in-out infinite;
+        // animation: float 6s ease-in-out infinite;
 
         @include respond-to(desktop) {
             width: 420px;
             height: 840px;
-            transform: rotateY(-12deg) rotateX(6deg) rotateZ(1deg);
-
-            &:hover {
-                transform: rotateY(-8deg) rotateX(4deg) scale(1.03);
-                animation-play-state: paused;
-            }
+            // transform: rotateY(-12deg) rotateX(6deg) rotateZ(1deg);
         }
     }
 
@@ -190,14 +207,16 @@
         position: absolute;
         top: 15%;
         left: 14%;
-        right: 15%;
+        right: 14%;
         bottom: 14%;
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        background: linear-gradient(180deg, #121212 0%, #000000 100%);
         border-radius: 30px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: auto;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
 
         @include respond-to(desktop) {
             border-radius: 33px;
@@ -207,13 +226,9 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image:
-                radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.05) 0%, transparent 70%),
-                url('/src/assets/icons/ladrillos.png');
-            background-size: cover;
-            background-blend-mode: overlay;
-            opacity: 0.4;
+            background: linear-gradient(135deg, rgba($color-primary, 0.15) 0%, transparent 60%);
             pointer-events: none;
+            z-index: 1;
         }
 
         &--off {
@@ -278,6 +293,11 @@
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
             color: rgba(255, 255, 255, 0.98);
             z-index: 15;
+            pointer-events: none;
+
+            * {
+                pointer-events: none;
+            }
 
             .status-bar__left {
                 flex: 1;
@@ -347,6 +367,7 @@
             align-items: center;
             gap: 6px;
             cursor: pointer;
+            position: relative;
         }
 
         .iphone-app-icon {
@@ -373,6 +394,7 @@
                 background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
                 opacity: 0;
                 transition: opacity 0.3s;
+                pointer-events: none;
             }
 
             &:hover::before {
@@ -385,6 +407,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 14px;
+            pointer-events: none;
         }
 
         .iphone-app-name {
@@ -422,6 +445,11 @@
                 0 8px 32px rgba(0, 0, 0, 0.4),
                 inset 0 1px 2px rgba(255, 255, 255, 0.1);
             z-index: 10;
+            pointer-events: none;
+
+            * {
+                pointer-events: none;
+            }
         }
 
         .iphone-dock-icon {
@@ -658,129 +686,7 @@
         }
     }
 
-    // Decorative Paint Splatters
-    .paint-splatter {
-        position: absolute;
-        pointer-events: none;
-        opacity: 0.75;
-        z-index: 2;
-
-        &--1 {
-            top: 5%;
-            left: 2%;
-            width: 285px;
-            transform: rotate(-12deg);
-        }
-
-        &--2 {
-            top: 15%;
-            right: 5%;
-            width: 245px;
-            transform: rotate(28deg);
-        }
-
-        &--3 {
-            bottom: 10%;
-            left: 8%;
-            width: 310px;
-            transform: rotate(42deg);
-        }
-
-        &--4 {
-            top: 45%;
-            right: 10%;
-            width: 215px;
-            transform: rotate(-33deg);
-        }
-
-        &--5 {
-            bottom: 20%;
-            right: 3%;
-            width: 275px;
-            transform: rotate(58deg);
-        }
-
-        &--6 {
-            top: 30%;
-            left: 1%;
-            width: 235px;
-            transform: rotate(-48deg);
-        }
-
-        &--7 {
-            top: 60%;
-            left: 15%;
-            width: 265px;
-            transform: rotate(18deg);
-        }
-
-        &--8 {
-            top: 8%;
-            right: 20%;
-            width: 225px;
-            transform: rotate(-38deg);
-        }
-
-        &--9 {
-            bottom: 30%;
-            right: 25%;
-            width: 295px;
-            transform: rotate(32deg);
-        }
-
-        &--10 {
-            top: 70%;
-            left: 25%;
-            width: 205px;
-            transform: rotate(-22deg);
-        }
-
-        &--11 {
-            bottom: 5%;
-            right: 18%;
-            width: 255px;
-            transform: rotate(52deg);
-        }
-
-        &--12 {
-            top: 25%;
-            left: 20%;
-            width: 280px;
-            transform: rotate(-53deg);
-        }
-
-        @include respond-to(mobile) {
-            &--1 {
-                width: 155px;
-            }
-
-            &--2 {
-                width: 135px;
-            }
-
-            &--3,
-            &--7,
-            &--9,
-            &--11 {
-                display: none;
-            }
-
-            &--4 {
-                width: 125px;
-            }
-
-            &--5 {
-                display: none;
-            }
-
-            &--6,
-            &--8,
-            &--10,
-            &--12 {
-                width: 145px;
-            }
-        }
-    }
+    // Decorative Paint Splatters - REMOVED
 }
 
 // Project Modal Overlay

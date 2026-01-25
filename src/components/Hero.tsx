@@ -1,17 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag } from 'lucide-react';
 import powerIcon from '../assets/icons/power.png';
 import tcmLogo from '../assets/projects/TCM.png';
 import rossanaLogo from '../assets/projects/logo-new.png';
+import strideHubLogo from '../assets/projects/stridehub-logo.png';
 import phoneFrame from '../assets/profile/marco-telefono.png';
-import pintura1 from '../assets/icons/pintura1.png';
-import pintura2 from '../assets/icons/pintura2.png';
-import pintura3 from '../assets/icons/pintura3.png';
-import pintura4 from '../assets/icons/pintura4.png';
-import pintura5 from '../assets/icons/pintura5.png';
-import pintura6 from '../assets/icons/pintura6.png';
-import pintura7 from '../assets/icons/pintura7.png';
 
 import { ProjectModal } from './ProjectModal';
 
@@ -52,7 +45,7 @@ const projects = [
         color: "#ffcc00",
         bg: "#0a0a0a",
         type: "E-Commerce",
-        icon: ShoppingBag,
+        logo: strideHubLogo,
         theme: "poster--sneaker",
         tag: "E-COMMERCE",
         demoUrl: "https://stridehub-two.vercel.app/",
@@ -89,22 +82,9 @@ export const Hero = () => {
 
     return (
         <section className="hero" id="home">
-            <div className="hero__wall-texture"></div>
-            <div className="hero__overlay"></div>
-
-            {/* Decorative Paint Splatters */}
-            <img src={pintura1} alt="" className="paint-splatter paint-splatter--1" />
-            <img src={pintura3} alt="" className="paint-splatter paint-splatter--2" />
-            <img src={pintura5} alt="" className="paint-splatter paint-splatter--3" />
-            <img src={pintura2} alt="" className="paint-splatter paint-splatter--4" />
-            <img src={pintura1} alt="" className="paint-splatter paint-splatter--5" />
-            <img src={pintura4} alt="" className="paint-splatter paint-splatter--6" />
-            <img src={pintura6} alt="" className="paint-splatter paint-splatter--7" />
-            <img src={pintura1} alt="" className="paint-splatter paint-splatter--8" />
-            <img src={pintura4} alt="" className="paint-splatter paint-splatter--9" />
-            <img src={pintura3} alt="" className="paint-splatter paint-splatter--10" />
-            <img src={pintura7} alt="" className="paint-splatter paint-splatter--11" />
-            <img src={pintura2} alt="" className="paint-splatter paint-splatter--12" />
+            <div className="hero__glow hero__glow--1"></div>
+            <div className="hero__glow hero__glow--2"></div>
+            <div className="hero__grid-bg"></div>
 
             <div className="hero__container">
                 {/* LEFT COLUMN: Info & CTAs */}
@@ -200,21 +180,22 @@ export const Hero = () => {
                                             className="iphone-app-wrapper"
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
-                                            onClick={() => {
-                                                setSelectedProject(project);
-                                                setIsModalOpen(true);
-                                            }}
                                         >
-                                            <div className="iphone-app-icon">
-                                                {project.logo ? (
+                                            <div
+                                                className="iphone-app-icon"
+                                                onClick={() => {
+                                                    setSelectedProject(project);
+                                                    setIsModalOpen(true);
+                                                }}
+                                                style={{ cursor: 'pointer' }}
+                                            >
+                                                {project.logo && (
                                                     <img
                                                         src={project.logo}
                                                         alt={project.title}
                                                         className="iphone-app-logo"
                                                     />
-                                                ) : project.icon ? (
-                                                    <project.icon size={28} color="white" />
-                                                ) : null}
+                                                )}
                                             </div>
                                             <span className="iphone-app-name">{project.title}</span>
                                         </motion.div>
