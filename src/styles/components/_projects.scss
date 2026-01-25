@@ -1,14 +1,20 @@
 @use '../abstracts' as *;
 
 .projects-section {
-    display: none; // Hidden per user request
-    padding: $spacing-giant $spacing-md;
-    background-color: $bg-brick;
-    background-image: $texture-brick;
-    background-blend-mode: multiply;
-    min-height: 100vh;
-    @include flex-center;
-    flex-direction: column;
+    display: none !important; // Ensure hidden on Desktop/Tablet
+
+    @include respond-to(mobile) {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        padding: $spacing-giant $spacing-md;
+        background-color: $bg-brick;
+        background-image: $texture-brick;
+        background-blend-mode: multiply;
+        min-height: 100vh;
+    }
 }
 
 .wall-graffiti {
