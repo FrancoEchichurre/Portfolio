@@ -42,12 +42,12 @@
 .about-content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing-sm; // Aggressively reduced from md
+    gap: $spacing-md; // Standard gap
 
     @include respond-to(desktop) {
         grid-template-columns: 1fr 1fr;
         align-items: flex-start;
-        gap: $spacing-md; // Aggressively reduced from xl
+        gap: $spacing-lg; // Increased from md
     }
 }
 
