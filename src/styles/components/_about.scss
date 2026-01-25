@@ -42,12 +42,12 @@
 .about-content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing-lg; // Increased spacing
+    gap: $spacing-xl; // Significant gap
 
     @include respond-to(desktop) {
         grid-template-columns: 1fr 1fr;
         align-items: flex-start;
-        gap: $spacing-xl; // Increased back to xl
+        gap: 150px; // Drastically increased as requested
     }
 }
 
