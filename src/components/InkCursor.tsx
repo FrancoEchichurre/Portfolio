@@ -15,6 +15,10 @@ export const InkCursor = () => {
 
     // Track mouse position
     useEffect(() => {
+        // Only enable on devices that have a hover-capable pointer (mouse)
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        if (isTouchDevice) return;
+
         const handleMouseMove = (e: MouseEvent) => {
             setMousePosition({ x: e.clientX, y: e.clientY });
         };
@@ -25,6 +29,9 @@ export const InkCursor = () => {
 
     // Handle click to create ripple
     useEffect(() => {
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        if (isTouchDevice) return;
+
         const handleClick = (e: MouseEvent) => {
             const newRipple: Ripple = {
                 id: Date.now() + Math.random(),
