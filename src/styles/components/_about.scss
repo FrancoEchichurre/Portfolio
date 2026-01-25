@@ -152,8 +152,8 @@
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 
-    @include respond-to(desktop) {
-        display: none; // Hide on desktop
+    @media (min-width: $tablet) {
+        display: none; // Hide on desktop and large tablets
     }
 }
 
