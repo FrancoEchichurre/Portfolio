@@ -64,12 +64,18 @@
     max-width: 500px;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; // Align children to right (badge)
+    text-align: right; // Optional: align text too, or override for p
 
     p {
         font-family: $font-body;
         font-size: 1.1rem;
         line-height: 1.7;
         color: rgba(255, 255, 255, 0.8);
+        text-align: left; // Keep text left aligned
+        width: 100%;
     }
 }
 
