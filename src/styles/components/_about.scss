@@ -64,11 +64,32 @@
 
 .about-bio {
     padding: $spacing-lg;
+    padding-left: 100px; // Make space for the badge
     border-radius: 16px;
-    max-width: 500px;
+    max-width: 600px; // Slightly wider to accommodate badge
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    // Reverted internal alignment
+
+    .certificate-badge {
+        position: absolute;
+        left: -30px; // Hang off the left edge slightly
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100px;
+        height: 100px;
+        background: $bg-dark; // Match bg to hide border overlap if any
+        border-radius: 12px;
+        padding: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    }
 
     p {
         font-family: $font-body;

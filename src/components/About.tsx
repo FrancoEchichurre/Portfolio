@@ -4,6 +4,7 @@ import { ProjectModal } from './ProjectModal';
 import tcmLogo from '../assets/projects/TCM.png';
 import rossanaLogo from '../assets/projects/logo-new.png';
 import strideHubLogo from '../assets/projects/stridehub-logo.png';
+import certificateImg from '../assets/profile/Certificado-Full-Stack-Engineer-EducaciónIT.png';
 
 const skills = [
     { name: 'React', color: '#3366ff', rotate: 0 },
@@ -87,6 +88,9 @@ export const About = () => {
                         viewport={{ once: true }}
                     >
                         <div className="about-bio glass-card">
+                            <div className="certificate-badge">
+                                <img src={certificateImg} alt="Certificate" />
+                            </div>
                             <div className="badge-freelancer">SOY FREELANCER</div>
                             <p>
                                 Hola!! Soy Franco, desarrollador Front-End y Back-End.
