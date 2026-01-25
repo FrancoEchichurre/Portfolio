@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import powerIcon from '../assets/icons/power.png';
+
 import tcmLogo from '../assets/projects/TCM.png';
 import rossanaLogo from '../assets/projects/logo-new.png';
 import strideHubLogo from '../assets/projects/stridehub-logo.png';
@@ -57,14 +57,9 @@ const projects = [
 export const Hero = () => {
     const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isTabletOn, setIsTabletOn] = useState(true);
     const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
-        if (window.innerWidth < 1024) {
-            setIsTabletOn(false);
-        }
-
         // Update time every minute
         const timer = setInterval(() => {
             setCurrentTime(new Date());
@@ -110,7 +105,7 @@ export const Hero = () => {
                         transition={{ delay: 0.5 }}
                         className="hero__tagline"
                     >
-                        Webs modernas, funcionales y bien pensadas para hacer crecer tu negocio. (Tengo novia, solo hombres)
+                        Webs modernas, funcionales y bien pensadas para hacer crecer tu negocio.
                     </motion.p>
 
                     <motion.div
@@ -138,19 +133,8 @@ export const Hero = () => {
                         />
 
                         {/* Phone Screen Content */}
-                        <div className={`phone-screen ${!isTabletOn ? 'phone-screen--off' : ''}`}>
-                            {!isTabletOn && (
-                                <div className="power-overlay">
-                                    <motion.button
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.9 }}
-                                        onClick={() => setIsTabletOn(true)}
-                                        className="btn-power"
-                                    >
-                                        <img src={powerIcon} alt="Power On" className="btn-power__icon" />
-                                    </motion.button>
-                                </div>
-                            )}
+                        <div className="phone-screen">
+
 
                             {/* Status Bar */}
                             <div className="iphone-status-bar">
