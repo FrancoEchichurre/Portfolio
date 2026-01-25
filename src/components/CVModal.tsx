@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Download } from 'lucide-react';
-import { useEffect } from 'react';
+import { X, Download, FileText } from 'lucide-react';
+import cvFile from '../assets/cv/cv.pdf'; // Assuming this path exists or user will provide it
 
 interface CVModalProps {
     isOpen: boolean;
@@ -8,86 +8,58 @@ interface CVModalProps {
 }
 
 export const CVModal = ({ isOpen, onClose }: CVModalProps) => {
-    // Close modal on ESC key
-    useEffect(() => {
-        const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') onClose();
-        };
-        if (isOpen) {
-            window.addEventListener('keydown', handleEsc);
-            return () => window.removeEventListener('keydown', handleEsc);
-        }
-    }, [isOpen, onClose]);
-
-    // Lock body scroll when modal is open
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [isOpen]);
-
-    const handleDownload = () => {
-        const link = document.createElement('a');
-        link.href = '/cv.pdf';
-        link.download = 'CV_Franco_Echichurre.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
     return (
         <AnimatePresence>
             {isOpen && (
-                <motion.div
-                    className="project-modal-overlay"
-                    onClick={onClose}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                >
+                <>
+                    <motion.div
+                        className="cv-modal-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={onClose}
+                    />
                     <motion.div
                         className="cv-modal"
+                        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0.9, opacity: 0, y: 20 }}
                         onClick={(e) => e.stopPropagation()}
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.9, opacity: 0 }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
                     >
-                        {/* Close Button */}
-                        <button className="modal-close-btn" onClick={onClose}>
+                        <button className="cv-modal__close" onClick={onClose}>
                             <X size={24} />
                         </button>
 
-                        {/* Download Button */}
-                        <motion.button
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="btn-download-cv"
-                            onClick={handleDownload}
-                        >
-                            <div className="btn-download-cv__sticker">
-                                <Download size={18} />
-                                <span>DESCARGAR</span>
-                                <div className="btn-download-cv__tape"></div>
+                        <div className="cv-modal__content">
+                            <div className="cv-modal__icon">
+                                <FileText size={48} />
                             </div>
-                        </motion.button>
+                            <h2 className="cv-modal__title">Mi Curriculum</h2>
+                            <p className="cv-modal__text">
+                                Puedes ver mi experiencia detallada o descargar el PDF para guardarlo.
+                            </p>
 
-                        {/* PDF Viewer */}
-                        <div className="cv-viewer">
-                            <iframe
-                                src="/cv.pdf"
-                                title="CV Franco Echichurre"
-                                className="cv-iframe"
-                            />
+                            <div className="cv-modal__actions">
+                                <a
+                                    href={cvFile}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn-modern btn-modern--secondary"
+                                >
+                                    VER ONLINE
+                                </a>
+                                <a
+                                    href={cvFile}
+                                    download="Franco_CV.pdf"
+                                    className="btn-modern btn-modern--primary"
+                                >
+                                    <Download size={20} />
+                                    DESCARGAR PDF
+                                </a>
+                            </div>
                         </div>
                     </motion.div>
-                </motion.div>
+                </>
             )}
         </AnimatePresence>
     );

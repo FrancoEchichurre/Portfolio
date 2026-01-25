@@ -25,8 +25,8 @@ export const ReadyToWork = ({ onOpenContact }: ReadyToWorkProps) => {
                         ¿LISTO PARA <span className="text-spray-blue">TRABAJAR</span> JUNTOS?
                     </h2>
                     <p className="ready-to-work__intro">
-                        Soy Franco, desarrollador Full Stack especializado en crear experiencias web funcionales y escalables.
-                        Actualmente abierto a nuevas oportunidades donde pueda aportar mis habilidades y seguir creciendo profesionalmente.
+                        Una web no debería ser solo “algo que esté online”. Debería comunicar, guiar al usuario y cumplir un objetivo claro. Cuando eso no pasa, el problema no es la idea, sino cómo está construida.
+                        Desarrollo soluciones web modernas y funcionales, con foco en experiencia de usuario, rendimiento y código limpio. Trabajo para que cada proyecto sea fácil de usar, mantener y escalar en el tiempo.
                     </p>
                 </motion.div>
 
