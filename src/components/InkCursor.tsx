@@ -1,85 +1,71 @@
-import { useState, useEffect } from 'react';
-
-interface Ripple {
-    id: number;
-    x: number;
-    y: number;
-    color: string;
-}
-
-const inkColors = ['#ff3333', '#3366ff', '#33ff33', '#ffcc00', '#ff6600', '#9933ff'];
+import { useEffect, useState } from 'react';
+import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 export const InkCursor = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [ripples, setRipples] = useState<Ripple[]>([]);
+    // Mouse position state
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [isClicking, setIsClicking] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
-    // Track mouse position
+    // Spring physics for the trailing ring
+    const cursorX = useMotionValue(-100);
+    const cursorY = useMotionValue(-100);
+
+    const springConfig = { damping: 25, stiffness: 150, mass: 0.8 };
+    const springX = useSpring(cursorX, springConfig);
+    const springY = useSpring(cursorY, springConfig);
+
     useEffect(() => {
-        // Only enable on devices that have a hover-capable pointer (mouse)
-        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-        if (isTouchDevice) return;
+        // Mobile check
+        const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        if (isTouch) return;
 
-        const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
+        setIsVisible(true);
+
+        const moveCursor = (e: MouseEvent) => {
+            setMousePos({ x: e.clientX, y: e.clientY });
+            cursorX.set(e.clientX);
+            cursorY.set(e.clientY);
         };
 
-        document.addEventListener('mousemove', handleMouseMove);
-        return () => document.removeEventListener('mousemove', handleMouseMove);
-    }, []);
+        const handleClickDown = () => setIsClicking(true);
+        const handleClickUp = () => setIsClicking(false);
 
-    // Handle click to create ripple
-    useEffect(() => {
-        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-        if (isTouchDevice) return;
+        window.addEventListener('mousemove', moveCursor);
+        window.addEventListener('mousedown', handleClickDown);
+        window.addEventListener('mouseup', handleClickUp);
 
-        const handleClick = (e: MouseEvent) => {
-            const newRipple: Ripple = {
-                id: Date.now() + Math.random(),
-                x: e.clientX,
-                y: e.clientY,
-                color: inkColors[Math.floor(Math.random() * inkColors.length)]
-            };
-
-            setRipples(prev => {
-                const updated = [...prev, newRipple];
-                // Keep only last 6 ripples
-                return updated.slice(-6);
-            });
-
-            // Remove ripple after animation completes
-            setTimeout(() => {
-                setRipples(prev => prev.filter(r => r.id !== newRipple.id));
-            }, 1000);
+        return () => {
+            window.removeEventListener('mousemove', moveCursor);
+            window.removeEventListener('mousedown', handleClickDown);
+            window.removeEventListener('mouseup', handleClickUp);
         };
-
-        document.addEventListener('click', handleClick);
-        return () => document.removeEventListener('click', handleClick);
     }, []);
+
+    if (!isVisible) return null;
 
     return (
         <>
-            {/* Simple cursor dot */}
+            {/* Main Dot (Instant) */}
             <div
-                className="ink-cursor"
+                className="tech-cursor-dot"
                 style={{
-                    left: `${mousePosition.x}px`,
-                    top: `${mousePosition.y}px`,
+                    left: `${mousePos.x}px`,
+                    top: `${mousePos.y}px`,
+                    transform: `translate(-50%, -50%) scale(${isClicking ? 0.5 : 1})`
                 }}
             />
 
-            {/* Ripple effects */}
-            {ripples.map((ripple) => (
-                <div
-                    key={ripple.id}
-                    className="ink-ripple"
-                    style={{
-                        left: `${ripple.x}px`,
-                        top: `${ripple.y}px`,
-                        borderColor: ripple.color,
-                        backgroundColor: ripple.color,
-                    }}
-                />
-            ))}
+            {/* Trailing Ring (Spring) */}
+            <motion.div
+                className={`tech-cursor-ring ${isClicking ? 'clicking' : ''}`}
+                style={{
+                    translateX: '-50%',
+                    translateY: '-50%',
+                    left: springX,
+                    top: springY,
+                }}
+            />
         </>
     );
 };

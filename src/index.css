@@ -2,44 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ink Cursor Styles */
-.ink-cursor {
+/* Tech Cursor Styles */
+.tech-cursor-dot {
     position: fixed;
-    width: 8px;
-    height: 8px;
-    background: white;
-    border: 1px solid black;
+    width: 6px;
+    height: 6px;
+    background-color: #00f0ff;
+    /* Neon Cyan */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.1s ease;
+    box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+
+.tech-cursor-ring {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+    mix-blend-mode: difference;
 }
 
-.ink-ripple {
-    position: fixed;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    border-width: 3px;
-    border-style: solid;
-    animation: inkExpand 1s ease-out forwards;
-}
-
-@keyframes inkExpand {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 0.6;
-    }
-
-    100% {
-        width: 150px;
-        height: 150px;
-        opacity: 0;
-    }
+.tech-cursor-ring.clicking {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 240, 255, 0.1);
+    border-color: #00f0ff;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
 }
 
 /* Hide default cursor on desktop */
