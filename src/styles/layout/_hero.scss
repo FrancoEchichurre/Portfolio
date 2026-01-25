@@ -54,14 +54,16 @@
         flex-direction: column;
         align-items: center;
         gap: $spacing-xl;
-        padding-top: 5vh; // Extra space for mobile top
+        height: 100vh; // Full height on mobile
+        justify-content: center; // Center vertically since phone is hidden
 
         @include respond-to(desktop) {
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
             padding: 0 $spacing-xl;
-            padding-top: 0; // Reset for desktop
+            height: auto; // Auto height on desktop
+            padding-top: 0;
         }
     }
 
@@ -72,11 +74,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
 
         @include respond-to(desktop) {
             width: 50%;
             text-align: left;
             align-items: flex-start;
+            min-height: auto;
+            justify-content: flex-start;
         }
     }
 
@@ -97,7 +102,7 @@
 
     &__name-line {
         font-family: $font-display;
-        font-size: clamp(4rem, 8vw, 8rem);
+        font-size: clamp(3.5rem, 15vw, 8rem); // Adjusted for mobile fit
         font-weight: 800;
         color: $text-primary;
         line-height: 0.85;
@@ -165,12 +170,13 @@
     &__right {
         position: relative;
         width: 100%;
-        display: flex;
+        display: none; // Hidden by default on mobile
         justify-content: center;
         perspective: 1000px;
         z-index: 5;
 
         @include respond-to(desktop) {
+            display: flex; // Show on desktop
             width: 50%;
             justify-content: flex-end;
         }
