@@ -58,8 +58,9 @@
     position: relative; // Context for absolute badge if needed, or flex layout
 
     @include respond-to(desktop) {
-        align-items: flex-end;
-        flex-direction: row; // Change to row to put badge on left
+        align-items: center; // Vertically center badge with card
+        flex-direction: row;
+        justify-content: flex-end; // Push everything to the right (towards center)
         gap: $spacing-lg;
     }
 }
