@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ProjectModal } from './ProjectModal';
 import tcmLogo from '../assets/projects/TCM.png';
 import rossanaLogo from '../assets/projects/logo-new.png';
@@ -65,6 +65,7 @@ const projects = [
 
 export const About = () => {
     const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+    const [showCertificate, setShowCertificate] = useState(false);
 
     return (
         <section className="about-section" id="about">
@@ -87,10 +88,17 @@ export const About = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
+                        {/* Interactive Certificate Badge (Outside Card) */}
+                        <motion.div
+                            className="certificate-badge-container"
+                            whileHover={{ scale: 1.1, rotate: -5 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setShowCertificate(true)}
+                        >
+                            <img src={certificateImg} alt="Certificate" />
+                        </motion.div>
+
                         <div className="about-bio glass-card">
-                            <div className="certificate-badge">
-                                <img src={certificateImg} alt="Certificate" />
-                            </div>
                             <div className="badge-freelancer">SOY FREELANCER</div>
                             <p>
                                 Hola!! Soy Franco, desarrollador Front-End y Back-End.
@@ -99,6 +107,35 @@ export const About = () => {
                             </p>
                         </div>
                     </motion.div>
+
+                    {/* Certificate Modal Overlay */}
+                    <AnimatePresence>
+                        {showCertificate && (
+                            <motion.div
+                                className="certificate-modal-overlay"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setShowCertificate(false)}
+                            >
+                                <motion.div
+                                    className="certificate-modal-content"
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.8, opacity: 0 }}
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <button
+                                        className="close-button"
+                                        onClick={() => setShowCertificate(false)}
+                                    >
+                                        ×
+                                    </button>
+                                    <img src={certificateImg} alt="Full Certificate" />
+                                </motion.div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
 
                     {/* Right Column: Skills Grid */}
                     <motion.div

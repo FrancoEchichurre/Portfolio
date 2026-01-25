@@ -51,48 +51,115 @@
     }
 }
 
-// Left Column: Bio
 .about-profile {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative; // Context for absolute badge if needed, or flex layout
 
     @include respond-to(desktop) {
-        align-items: flex-end; // Push card to the right (towards center)
+        align-items: flex-end;
+        flex-direction: row; // Change to row to put badge on left
+        gap: $spacing-lg;
+    }
+}
+
+.certificate-badge-container {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0; // Don't shrink
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    // On mobile, maybe center it above?
+    margin-bottom: $spacing-md;
+
+    @include respond-to(desktop) {
+        margin-bottom: 0;
+        // No absolute positioning needed if flex-direction is row
+    }
+
+    &:hover {
+        border-color: $color-primary;
+        box-shadow: 0 0 20px rgba($color-primary, 0.2);
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+}
+
+// Certificate Modal
+.certificate-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.certificate-modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+
+    img {
+        max-width: 100%;
+        max-height: 80vh;
+        display: block;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: bg 0.2s;
+
+        &:hover {
+            background: rgba($color-primary, 0.8);
+        }
     }
 }
 
 .about-bio {
     padding: $spacing-lg;
-    padding-left: 100px; // Make space for the badge
+    // Removed padding-left since badge is now outside
     border-radius: 16px;
-    max-width: 600px; // Slightly wider to accommodate badge
+    max-width: 500px; // Reset width
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.05);
 
-    .certificate-badge {
-        position: absolute;
-        left: -30px; // Hang off the left edge slightly
-        top: 50%;
-        transform: translateY(-50%);
-        width: 100px;
-        height: 100px;
-        background: $bg-dark; // Match bg to hide border overlap if any
-        border-radius: 12px;
-        padding: 5px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-    }
-
     p {
         font-family: $font-body;
+
         font-size: 1.1rem;
         line-height: 1.7;
         color: rgba(255, 255, 255, 0.8);
