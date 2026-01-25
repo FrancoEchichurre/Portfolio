@@ -152,8 +152,10 @@
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 
-    @media (min-width: $tablet) {
-        display: none; // Hide on desktop and large tablets
+    display: none; // Hidden by default (Desktop/Tablet)
+
+    @include respond-to(mobile) {
+        display: block; // Only visible on Mobile
     }
 }
 
