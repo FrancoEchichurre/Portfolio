@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ProjectModal } from './ProjectModal';
 import tcmLogo from '../assets/projects/TCM.png';
@@ -66,6 +66,23 @@ const projects = [
 export const About = () => {
     const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
     const [showCertificate, setShowCertificate] = useState(false);
+
+    useEffect(() => {
+        if (showCertificate) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+            console.log("SCROLL UNLOCKED");
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [showCertificate]);
+
+    // Changing strategy: I'll update the imports first, then the logic.
+    // Wait, I can do it in one go if I'm careful, but better safe.
+    // Let's check imports.
+
 
     return (
         <section className="about-section" id="about">
