@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, MessageCircle, X, Copy, Check } from 'lucide-react';
+import { Github, Mail, MessageCircle, X, Copy, Check } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 interface ContactSidebarProps {
