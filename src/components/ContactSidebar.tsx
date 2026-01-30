@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, MessageCircle } from 'lucide-react';
+import { Github, Linkedin, Mail, MessageCircle, X, Copy, Check } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 interface ContactSidebarProps {
@@ -14,6 +14,9 @@ export const ContactSidebar = ({ isOpen, onClose }: ContactSidebarProps) => {
         email: '',
         message: ''
     });
+
+    const [showEmailPopup, setShowEmailPopup] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     // Close on ESC
     useEffect(() => {
@@ -45,12 +48,19 @@ export const ContactSidebar = ({ isOpen, onClose }: ContactSidebarProps) => {
             `✉️ *Correo:* ${formData.email}\n\n` +
             `📝 *Mensaje:* \n${formData.message}\n\n` +
             `---`
-);
+        );
 
         window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
 
         // Limpiar formulario después de enviar
         setFormData({ name: '', email: '', message: '' });
+    };
+
+    const handleCopyEmail = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText('francoechichurrez@gmail.com');
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     return (
@@ -74,39 +84,42 @@ export const ContactSidebar = ({ isOpen, onClose }: ContactSidebarProps) => {
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                        onClick={() => setShowEmailPopup(false)} // Close popup on background click
                     >
                         <div className="contact-sidebar__header">
-                            <h2 className="contact-sidebar__title">HAGAMOS ALGO <span className="text-spray">JUNTOS</span></h2>
+                            <h2 className="contact-sidebar__title">HAGAMOS ALGO <span className="text-highlight">JUNTOS</span></h2>
+                            <button className="contact-sidebar__close" onClick={onClose}>
+                                <X size={24} />
+                            </button>
                         </div>
-
 
                         <div className="contact-sidebar__content">
                             <form className="contact-sidebar__form" onSubmit={handleSubmitWhatsApp} onClick={(e) => e.stopPropagation()}>
-                                <div className="form-sticker-group">
-                                    <label>TU NOMBRE *</label>
+                                <div className="contact-input-group">
+                                    <label>TU NOMBRE</label>
                                     <input
                                         type="text"
-                                        placeholder="GHOST_WRITER"
+                                        placeholder="Nombre"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         required
                                     />
                                 </div>
-                                <div className="form-sticker-group">
-                                    <label>TU EMAIL *</label>
+                                <div className="contact-input-group">
+                                    <label>TU EMAIL</label>
                                     <input
                                         type="email"
-                                        placeholder="contact@zone.com"
+                                        placeholder="mail@correo.com"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                         required
                                     />
                                 </div>
-                                <div className="form-sticker-group">
-                                    <label>MENSAJE *</label>
+                                <div className="contact-input-group">
+                                    <label>MENSAJE</label>
                                     <textarea
                                         rows={6}
-                                        placeholder="¿Qué tienes en mente?"
+                                        placeholder="Cuéntame que tenes en mente..."
                                         value={formData.message}
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         required
@@ -117,29 +130,46 @@ export const ContactSidebar = ({ isOpen, onClose }: ContactSidebarProps) => {
                                     type="submit"
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="btn-whatsapp"
+                                    className="btn-whatsapp-modern"
                                 >
-                                    <MessageCircle size={24} />
+                                    <MessageCircle size={20} />
                                     <span>ENVIAR A WHATSAPP</span>
                                 </motion.button>
                             </form>
 
                             <div className="contact-sidebar__socials">
-                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                                    <Github size={20} /> <span>GITHUB</span>
+                                <a href="https://github.com/FrancoEchichurre" target="_blank" rel="noopener noreferrer" className="social-pill">
+                                    <Github size={18} /> <span>GITHUB</span>
                                 </a>
-                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                                    <Linkedin size={20} /> <span>LINKEDIN</span>
-                                </a>
-                                <a href="mailto:franco@example.com" className="social-link">
-                                    <Mail size={20} /> <span>EMAIL</span>
-                                </a>
+
+                                {/* Email Container */}
+                                <div className="email-container" onClick={(e) => e.stopPropagation()}>
+                                    <AnimatePresence>
+                                        {showEmailPopup && (
+                                            <motion.div
+                                                className="email-popup"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 10 }}
+                                            >
+                                                <span className="email-text">francoechichurrez@gmail.com</span>
+                                                <button className="btn-copy" onClick={handleCopyEmail}>
+                                                    {copied ? <Check size={16} color="#00ff88" /> : <Copy size={16} />}
+                                                </button>
+                                                {copied && <span className="copy-feedback">¡Copiado!</span>}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+
+                                    <button
+                                        className={`social-pill ${showEmailPopup ? 'active' : ''}`}
+                                        onClick={() => setShowEmailPopup(!showEmailPopup)}
+                                    >
+                                        <Mail size={18} /> <span>EMAIL</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-
-                        {/* Urban Decor */}
-                        <div className="contact-sidebar__tape contact-sidebar__tape--1"></div>
-                        <div className="contact-sidebar__tape contact-sidebar__tape--2"></div>
                     </motion.div>
                 </>
             )}

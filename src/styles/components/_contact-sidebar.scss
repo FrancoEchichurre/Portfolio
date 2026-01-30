@@ -6,46 +6,10 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
     z-index: 1000;
 }
-
-.btn-whatsapp {
-    width: 100%;
-    margin-top: 4px;
-    padding: 12px 24px;
-    background: #25D366; // Verde WhatsApp oficial
-    color: white;
-    border: 2px solid #1da851;
-    border-radius: 12px;
-    font-family: $font-body;
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    cursor: pointer;
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: rotate(-1deg);
-
-    &:hover {
-
-        background: lighten(#25D366, 5%);
-        box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.5);
-        transform: scale(1.02) rotate(0deg);
-    }
-
-    &:active {
-        transform: scale(0.98);
-    }
-}
-
 
 .contact-sidebar {
     position: fixed;
@@ -53,22 +17,18 @@
     right: 0;
     height: 100vh;
     width: 100%;
-    max-width: 400px;
-    background-color: #222;
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('/src/assets/icons/ladrillos.png'); // Reuse brick texture or concrete
-    background-size: cover;
-    background-position: center;
-    border-left: 4px solid #333;
+    max-width: 450px;
+    background: rgba(10, 10, 15, 0.95);
+    background: linear-gradient(135deg, rgba(15, 15, 20, 0.98), rgba(10, 10, 12, 0.95));
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
     z-index: 1050;
     display: flex;
     flex-direction: column;
     padding: $spacing-xl;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
 
     @include respond-to(tablet) {
-        max-width: 350px;
+        max-width: 380px;
     }
 
     @include respond-to(mobile) {
@@ -79,32 +39,39 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: $spacing-xl;
+        margin-bottom: $spacing-lg;
     }
 
     &__title {
-        font-family: $font-secondary;
-        font-size: 2.5rem;
-        line-height: 0.9;
+        font-family: $font-display;
+        font-size: 2rem;
+        line-height: 1.1;
         color: white;
-        max-width: 250px;
+        max-width: 300px;
+        letter-spacing: 1px;
 
-        .text-spray {
-            color: $spray-green;
-            display: block;
+        .text-highlight {
+            color: $spray-green; // Uses the green we defined or fallback
+            display: inline-block;
+            text-shadow: 0 0 15px rgba($spray-green, 0.4);
         }
     }
 
     &__close {
-        background: none;
-        border: none;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
         color: white;
         cursor: pointer;
-        opacity: 0.6;
-        transition: opacity 0.2s;
+        padding: 8px;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
-            opacity: 1;
+            background: rgba(255, 255, 255, 0.15);
+            transform: rotate(90deg);
         }
     }
 
@@ -113,120 +80,247 @@
         display: flex;
         flex-direction: column;
         gap: $spacing-xl;
+        overflow-y: auto;
+        padding-bottom: $spacing-md;
+
+        /* Scrollbar styles */
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
     }
 
     &__form {
         display: flex;
         flex-direction: column;
         gap: $spacing-md;
+        margin-top: $spacing-md;
     }
 
     &__socials {
         margin-top: auto;
         display: flex;
-        flex-direction: column;
-        gap: $spacing-sm;
-        padding-top: $spacing-lg;
-        border-top: 1px dashed rgba(255, 255, 255, 0.2);
-    }
-
-    &__tape {
-        position: absolute;
-        width: 80px;
-        height: 25px;
-        background: rgba(255, 255, 255, 0.1);
-        z-index: -1;
-
-        &--1 {
-            top: 10%;
-            right: -20px;
-            transform: rotate(45deg);
-        }
-
-        &--2 {
-            bottom: 15%;
-            left: -20px;
-            transform: rotate(-30deg);
-        }
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-top: $spacing-xl;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 }
 
-.form-sticker-group {
+.contact-input-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
 
     label {
-        font-family: $font-stencil;
-        font-size: 0.8rem;
-        color: $spray-green;
-        letter-spacing: 1px;
+        font-family: $font-body;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 1.5px;
+        font-weight: 500;
+        text-transform: uppercase;
     }
 
     input,
     textarea {
-        background: white;
-        border: none;
-        padding: 12px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 14px;
         font-family: $font-body;
-        font-size: 1rem;
-        color: #333;
-        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
-        transform: rotate(-0.5deg);
-        border-radius: 2px;
+        font-size: 0.95rem;
+        color: white;
+        transition: all 0.2s;
 
         &:focus {
-            outline: 2px solid $spray-green;
-            transform: rotate(0deg);
+            outline: none;
+            border-color: rgba($spray-green, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 15px rgba($spray-green, 0.1);
+        }
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.2);
         }
     }
 
     textarea {
         resize: none;
-        border-radius: 0 0 15px 0; // Slightly torn corner look
     }
 }
 
-.btn-spray-send {
-    margin-top: $spacing-sm;
-    background: $spray-green;
-    color: black;
-    border: none;
-    padding: 15px;
-    font-family: $font-stencil;
-    font-size: 1.2rem;
+.btn-whatsapp-modern {
+    margin-top: $spacing-md;
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1px solid $spray-green;
+    border-radius: 8px;
+    color: $spray-green;
+    font-family: $font-body;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     cursor: pointer;
-    box-shadow: 0 4px 0 darken($spray-green, 20%);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 0 15px rgba($spray-green, 0.1);
 
     &:hover {
-        background: lighten($spray-green, 10%);
+        background: $spray-green;
+        color: black;
+        box-shadow: 0 0 30px rgba($spray-green, 0.4);
         transform: translateY(-2px);
     }
 
     &:active {
         transform: translateY(0);
-        box-shadow: none;
     }
 }
 
-.social-link {
+.social-pill {
+    flex: 1;
+    min-width: 100px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    color: white;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px; // Pill shape
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    font-family: $font-tag;
-    font-size: 1.1rem;
-    opacity: 0.7;
+    font-family: $font-body;
+    font-size: 0.75rem;
+    font-weight: 500;
     transition: all 0.2s;
 
     &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    // For when acting as a button
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+
+    &.active {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: $spray-green;
+        color: white;
+    }
+}
+
+.email-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+}
+
+.email-popup {
+    position: absolute;
+    bottom: 125%; // Lift it up a bit more
+    right: 0; // Align to right edge to avoid cut-off
+    left: auto;
+    transform: none;
+
+    background: rgba(15, 15, 20, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 8px; // Smaller radius
+    padding: 6px 6px 6px 12px; // Reduced padding
+
+    display: flex;
+    align-items: center;
+    gap: 8px; // Smaller gap
+    white-space: nowrap;
+    z-index: 2000;
+
+    // Arrow (adjusted for right alignment)
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        right: 20px; // Align with the button center roughly
+        width: 10px;
+        height: 10px;
+        background: rgba(15, 15, 20, 0.95);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        transform: rotate(45deg);
+    }
+}
+
+.email-text {
+    font-family: $font-body;
+    font-size: 0.75rem; // Smaller font
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.btn-copy {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 6px; // Smaller radius
+    width: 28px; // Smaller button
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+}
+
+.copy-feedback {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: $font-body;
+    font-size: 0.75rem;
+    color: $spray-green;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    animation: fadeInOut 2s ease forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 5px);
+    }
+
+    20% {
         opacity: 1;
-        color: $spray-green;
-        transform: translateX(5px);
+        transform: translate(-50%, 0);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -5px);
     }
 }

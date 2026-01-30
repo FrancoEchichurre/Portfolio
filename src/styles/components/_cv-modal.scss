@@ -4,11 +4,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(8px);
-    z-index: 2000;
+    z-index: 99999; // Highest priority
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,85 +17,96 @@
 .cv-modal {
     position: relative;
     width: 90%;
-    max-width: 500px;
+    max-width: 900px; // Much wider for PDF
+    height: 85vh; // Taller
     background: rgba(20, 20, 25, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
-    padding: $spacing-xl;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-    z-index: 2001;
+    padding: $spacing-lg; // Reduced padding
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 
     &__close {
         position: absolute;
-        top: $spacing-md;
-        right: $spacing-md;
-        background: transparent;
-        border: none;
-        color: rgba(255, 255, 255, 0.5);
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
         cursor: pointer;
         padding: 8px;
         border-radius: 50%;
         transition: all 0.2s;
-        size: 24px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            background: $color-primary;
+            color: black;
             transform: rotate(90deg);
         }
     }
 
     &__content {
+        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
-    }
-
-    &__icon {
-        width: 80px;
-        height: 80px;
-        background: rgba($color-primary, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: $color-primary;
-        margin-bottom: $spacing-lg;
-        box-shadow: 0 0 20px rgba($color-primary, 0.2);
+        height: 100%;
+        gap: $spacing-md;
     }
 
     &__title {
         font-family: $font-display;
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: white;
-        margin-bottom: $spacing-md;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: $spacing-sm;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
     }
 
-    &__text {
-        font-family: $font-body;
-        color: $text-secondary;
-        margin-bottom: $spacing-xl;
-        line-height: 1.6;
-    }
-
-    &__actions {
-        display: flex;
-        gap: $spacing-md;
+    &__pdf-container {
+        flex: 1;
         width: 100%;
+        background: #1a1a1a;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-        a {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-decoration: none;
-        }
+    &__iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block; // Fix inline gaps
+    }
 
+    .pdf-fallback {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-family: $font-body;
+        text-align: center;
+        padding: 20px;
+    }
+
+    &__download-btn.btn-modern {
+        flex-shrink: 0;
+        min-width: 250px;
+        margin-top: $spacing-sm;
+
+        // Ensure it's visible on smaller screens
         @include respond-to(mobile) {
-            flex-direction: column;
+            width: 100%;
         }
     }
 }

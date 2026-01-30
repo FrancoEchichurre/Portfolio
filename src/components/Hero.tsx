@@ -12,7 +12,7 @@ const projects = [
     {
         id: 1,
         title: "Training Club Movement",
-        description: "Tu cuerpo es tu templo. Sitio institucional de alto rendimiento.",
+        description: "Plataforma web oficial para Training Club Movement. Un sitio institucional de alto impacto visual diseñado para reflejar la energía y profesionalismo del gimnasio. Cuenta con secciones interactivas de disciplinas, presentación de entrenadores, galería de instalaciones y contacto directo. Optimizada para ofrecer una experiencia de usuario fluida y motivadora, conectando a la comunidad fitness con sus objetivos.",
         tech: ["React", "Node", "Mongo"],
         color: "#ff3333",
         bg: "#1a1a1a",
@@ -20,13 +20,14 @@ const projects = [
         logo: tcmLogo,
         theme: "poster--gym",
         tag: "WEB SITE",
-        demoUrl: "https://msc-gym.vercel.app/",
+        demoUrl: "https://tcm-gym.vercel.app/",
+        githubUrl: "https://github.com/FrancoEchichurre/TCM-GYM",
         screenshot: "/images/projects/move-full.png"
     },
     {
         id: 2,
         title: "Rossana Altez: Coach & Cursos Holisticos",
-        description: "Expande tu mente. Plataforma educativa para el alma.",
+        description: "Portal educativo enfocado en el desarrollo personal y terapias holísticas. Diseñado para ofrecer una experiencia de aprendizaje inmersiva y serena, donde los estudiantes pueden acceder a cursos on-demand, reservar sesiones de coaching y explorar recursos exclusivos. La plataforma destaca por su estética minimalista y su facilidad de navegación, creando el ambiente perfecto para el crecimiento interior.",
         tech: ["React", "Express", "Mongo"],
         color: "#9933ff",
         bg: "#fdfbf7",
@@ -35,12 +36,13 @@ const projects = [
         theme: "poster--zen",
         tag: "EDUCACIÓN",
         demoUrl: "https://www.rossanaaltez.com/",
+        githubUrl: "https://github.com/FrancoEchichurre/Rossana-Altez",
         screenshot: "/images/projects/rossana-full.png"
     },
     {
         id: 3,
         title: "Stride Hub",
-        description: "Pisando fuerte. E-commerce de cultura sneaker.",
+        description: "E-commerce de vanguardia dedicado a la cultura sneaker. Desarrollado con el stack MERN, ofrece una experiencia de compra fluida y segura. Cuenta con un catálogo dinámico con filtrado avanzado, gestión de carrito en tiempo real, autenticación segura y un diseño UI/UX moderno que resalta la exclusividad de cada producto. La fusión perfecta entre estilo urbano y tecnología robusta.",
         tech: ["MERN Stack", "Tailwind"],
         color: "#ffcc00",
         bg: "#0a0a0a",
@@ -49,6 +51,7 @@ const projects = [
         theme: "poster--sneaker",
         tag: "E-COMMERCE",
         demoUrl: "https://stridehub-two.vercel.app/",
+        githubUrl: "https://github.com/FrancoEchichurre/stridehub",
         screenshot: "/images/projects/victor-full.png"
     }
 ];
