@@ -123,7 +123,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-headline-lg-mobile text-[22px] font-bold text-on-background mb-2">Tu Proyecto Aquí</h3>
                 <p className="text-on-surface-variant text-sm mb-6 max-w-xs">Trabajemos juntos para construir tu próxima gran idea. Contáctame para empezar.</p>
-                <a href="mailto:franco@example.com" className="bg-primary text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-[#00a2ff] transition-colors active:scale-95 shadow-md inline-block cursor-pointer">
+                <a href="https://wa.me/59895063978" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-[#00a2ff] transition-colors active:scale-95 shadow-md inline-block cursor-pointer">
                   Hablemos
                 </a>
               </div>

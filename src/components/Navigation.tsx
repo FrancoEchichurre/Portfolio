@@ -51,7 +51,7 @@ export default function Navigation() {
             <span className="material-symbols-outlined">layers</span>
             Projects
           </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-secondary-container rounded-xl transition-all active:scale-98 duration-150" href="#contact" onClick={toggleDrawer}>
+          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-secondary-container rounded-xl transition-all active:scale-98 duration-150" href="https://wa.me/59895063978" target="_blank" rel="noopener noreferrer" onClick={toggleDrawer}>
             <span className="material-symbols-outlined">mail</span>
             Contact
           </a>
