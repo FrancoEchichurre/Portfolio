@@ -1,99 +1,102 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export default function Navigation() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 
   useEffect(() => {
-    if (isDrawerOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  }, [isDrawerOpen]);
-
-  // Close drawer on route change
-  useEffect(() => {
-    setIsDrawerOpen(false);
-  }, [location.pathname]);
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
-      {/* =========================================
-          MOBILE VIEW (md:hidden)
-          ========================================= */}
-      
-      {/* Mobile TopAppBar */}
-      <header className="md:hidden fixed top-0 w-full z-50 bg-surface-glass dark:bg-surface-glass backdrop-blur-md border-b border-border-subtle shadow-sm flex justify-center items-center px-margin-mobile h-16">
-        <Link to="/" className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim cursor-pointer">
-            Franco.dev
-        </Link>
-      </header>
-
-      {/* Mobile NavigationDrawer Overlay */}
+      {/* Mobile Navigation Drawer Shell */}
       <div 
-        className={`md:hidden fixed inset-0 bg-on-surface/20 z-[55] backdrop-blur-sm transition-opacity duration-300 ${isDrawerOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} 
+        id="nav-drawer" 
+        className={`fixed inset-y-0 left-0 z-[60] p-stack-md flex flex-col h-full w-80 rounded-r-xl bg-surface dark:bg-background shadow-xl transition-transform duration-300 md:hidden ${
+          isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-primary">Franco.dev</h2>
+          <button 
+            id="close-drawer" 
+            className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+            onClick={toggleDrawer}
+            aria-label="Close menu"
+          >
+            <span className="material-symbols-outlined text-[24px]">close</span>
+          </button>
+        </div>
+        <nav className="flex flex-col gap-2">
+          <a className="flex items-center gap-3 px-4 py-3 bg-primary-fixed text-on-primary-fixed-variant rounded-xl font-bold active:scale-98 duration-150" href="#">
+            <span className="material-symbols-outlined">home</span>
+            Home
+          </a>
+          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-secondary-container rounded-xl transition-all active:scale-98 duration-150" href="#stack" onClick={toggleDrawer}>
+            <span className="material-symbols-outlined">terminal</span>
+            Technology
+          </a>
+          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-secondary-container rounded-xl transition-all active:scale-98 duration-150" href="#projects" onClick={toggleDrawer}>
+            <span className="material-symbols-outlined">layers</span>
+            Projects
+          </a>
+          <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-secondary-container rounded-xl transition-all active:scale-98 duration-150" href="#contact" onClick={toggleDrawer}>
+            <span className="material-symbols-outlined">mail</span>
+            Contact
+          </a>
+        </nav>
+      </div>
+
+      {/* Overlay for Drawer */}
+      <div 
+        id="drawer-overlay" 
+        className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-50 md:hidden transition-opacity duration-300 ${
+          isDrawerOpen ? 'opacity-100 block' : 'opacity-0 hidden'
+        }`}
         onClick={toggleDrawer}
       ></div>
 
-      {/* Mobile NavigationDrawer */}
-      <nav 
-        className={`md:hidden fixed inset-y-0 left-0 z-[60] flex flex-col p-stack-md bg-surface dark:bg-background h-full w-72 rounded-r-xl shadow-xl transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      {/* TopAppBar */}
+      <header 
+        id="top-bar" 
+        className={`bg-surface-glass dark:bg-surface-glass fixed top-0 left-0 w-full z-40 backdrop-blur-md border-b border-border-subtle transition-all duration-300 ${
+          isScrolled ? 'shadow-md bg-surface-glass/90' : 'shadow-sm'
+        }`}
       >
-        <div className="flex items-center gap-4 mb-stack-lg">
-          <div className="w-12 h-12 rounded-full overflow-hidden bg-surface-container flex-shrink-0 border border-border-subtle">
-            <img alt="Franco Echichurre" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAkh_P3TYxjKVDzkX75YB5g2Q7cgSGaTKw5mRc0asbQvfM40h14a52Jpr4pcGrL6jGc78nzeOXD9_cBgnCdppsZm9ReCxlv0aM2pGuJIGL_BpeyNdBib8M55zmsudZWN6Yc1L2kAp1xgGiMhosYzzoI-ZCnFdS6SXGBkL0k5-OpU8ftnVcI4zF5at4tm1FK91aTNF7Eby7PV-3wf7-dcICEeuG9puju-SbCQMa1ToJwDsDkoQBrOEq"/>
+        <div className="flex items-center justify-between px-margin-mobile h-16 w-full max-w-container-max mx-auto">
+          <button 
+            id="menu-btn" 
+            className="md:hidden text-primary dark:text-primary-fixed active:scale-95 duration-200 hover:text-primary transition-colors flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 cursor-pointer"
+            onClick={toggleDrawer}
+            aria-label="Open menu"
+          >
+            <span className="material-symbols-outlined text-[24px]">menu</span>
+          </button>
+          <div className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed flex-1 text-center md:text-left tracking-tight">
+            Franco.dev
           </div>
-          <div>
-            <h2 className="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-primary truncate">Franco Echichurre</h2>
-            <p className="font-label-caps text-label-caps text-on-surface-variant">Full Stack Developer</p>
-            <p className="font-label-caps text-label-caps text-primary-container mt-1 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-primary-container inline-block"></span>
-              Disponible para proyectos
-            </p>
-          </div>
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-6">
+            <a className="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium" href="#projects">Projects</a>
+            <a className="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium" href="#experience">Experience</a>
+          </nav>
+          <button className="md:hidden text-primary dark:text-primary-fixed active:scale-95 duration-200 hover:text-primary transition-colors flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 invisible">
+            {/* Spacer for centering logo on mobile */}
+            <span className="material-symbols-outlined text-[24px]">code</span>
+          </button>
         </div>
-        <ul className="flex-1 space-y-2">
-          <li>
-            <Link to="/projects" className="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold active:scale-98 transition-all hover:bg-surface-container-high cursor-pointer">
-              <span className="material-symbols-outlined fill">code</span>
-              <span className="font-label-caps text-label-caps">Proyectos</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg active:scale-98 transition-all cursor-pointer">
-              <span className="material-symbols-outlined">home</span>
-              <span className="font-label-caps text-label-caps">Inicio</span>
-            </Link>
-          </li>
-
-          <li>
-            <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container rounded-lg active:scale-98 transition-all" href="#">
-              <span className="material-symbols-outlined">work</span>
-              <span className="font-label-caps text-label-caps">Experiencia</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      {/* =========================================
-          DESKTOP VIEW (hidden md:block)
-          ========================================= */}
-      
-      {/* Desktop TopNavBar */}
-      <nav className="hidden md:block fixed top-0 w-full z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-md border-b border-primary/10 shadow-[0_4px_20px_rgba(0,162,255,0.05)]">
-        <div className="flex justify-between items-center h-20 px-margin-mobile md:px-gutter max-w-container-max mx-auto">
-          <Link to="/" className="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-container cursor-pointer">Franco.dev</Link>
-          <div className="hidden md:flex gap-8 items-center">
-            <Link to="/projects" className={`font-bold font-body-md text-body-md py-1 cursor-pointer transition-colors ${location.pathname === '/projects' ? 'text-primary dark:text-primary-container border-b-2 border-primary' : 'text-secondary dark:text-secondary-fixed hover:text-primary'}`}>Projects</Link>
-
-            <a className="text-secondary dark:text-secondary-fixed hover:text-primary transition-colors font-body-md text-body-md" href="#">Experience</a>
-          </div>
-        </div>
-      </nav>
+      </header>
     </>
   );
 }
