@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Stack from '../components/Stack';
+import Experience from '../components/Experience';
 
 export default function Home() {
   return (
@@ -56,6 +57,9 @@ export default function Home() {
 
       {/* Mi Stack Tecnológico */}
       <Stack />
+
+      {/* Experiencia & Formación */}
+      <Experience />
 
       {/* Proyectos Destacados (Bento Style) */}
       <section className="w-full py-stack-lg bg-surface" id="projects">
