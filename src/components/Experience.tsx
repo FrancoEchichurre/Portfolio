@@ -39,32 +39,38 @@ export default function Experience() {
 
           {/* Tarjeta 2 */}
           <div className="bg-surface-container-lowest border border-outline-variant/30 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-              <div>
-                <h3 className="text-xl font-bold text-on-background">Full Stack Engineer</h3>
-                <h4 className="text-primary font-medium mt-1">EducaciónIT</h4>
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
+              <div className="flex-1">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                  <div>
+                    <h3 className="text-xl font-bold text-on-background">Full Stack Engineer</h3>
+                    <h4 className="text-primary font-medium mt-1">EducaciónIT</h4>
+                  </div>
+                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-sm font-bold w-fit">
+                    Finalizado en 2025
+                  </div>
+                </div>
+                
+                <ul className="list-disc list-inside text-on-surface-variant space-y-3 font-body-md text-body-md">
+                  <li>
+                    Bootcamp intensivo de programación estructurado en más de 150 horas de formación práctica y teórica.
+                  </li>
+                  <li>
+                    Desarrollo completo de aplicaciones web, desde el diseño de la interfaz hasta la arquitectura de bases de datos relacionales y no relacionales.
+                  </li>
+                </ul>
               </div>
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-sm font-bold w-fit">
-                Finalizado en 2025
-              </div>
-            </div>
-            
-            <ul className="list-disc list-inside text-on-surface-variant space-y-3 font-body-md text-body-md mb-6">
-              <li>
-                Bootcamp intensivo de programación estructurado en más de 150 horas de formación práctica y teórica.
-              </li>
-              <li>
-                Desarrollo completo de aplicaciones web, desde el diseño de la interfaz hasta la arquitectura de bases de datos relacionales y no relacionales.
-              </li>
-            </ul>
 
-            {/* Diploma Image */}
-            <div className="mt-6 rounded-xl overflow-hidden border border-outline-variant/20 shadow-sm">
-              <img 
-                src="/images/diploma.png" 
-                alt="Certificado de aprobación Full Stack Engineer - EducaciónIT" 
-                className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
-              />
+              {/* Diploma Image */}
+              <div className="w-full lg:w-2/5 shrink-0">
+                <div className="rounded-xl overflow-hidden border-4 border-surface-container-high shadow-md bg-white">
+                  <img 
+                    src="/images/diploma.png" 
+                    alt="Certificado de aprobación Full Stack Engineer - EducaciónIT" 
+                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
