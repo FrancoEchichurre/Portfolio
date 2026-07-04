@@ -1,28 +1,26 @@
-import { useState } from 'react';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { ReadyToWork } from './components/ReadyToWork';
-
-import { ContactToggle } from './components/ContactToggle';
-import { ContactSidebar } from './components/ContactSidebar';
+import { BrowserRouter as Router, Routes, Route, ScrollRestoration } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Projects from './pages/Projects';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   return (
-    <div style={{ backgroundColor: '#1a1a1a', minHeight: '100vh', color: 'white', fontFamily: 'var(--font-body)' }}>
-
-      <ContactToggle isOpen={isSidebarOpen} toggle={() => setIsSidebarOpen(!isSidebarOpen)} />
-      <ContactSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-      <Hero />
-      <About />
-      <ReadyToWork onOpenContact={() => setIsSidebarOpen(true)} />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+        <Navigation />
+        <div className="flex-1 flex flex-col">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
-
-
-
-
 
 export default App;

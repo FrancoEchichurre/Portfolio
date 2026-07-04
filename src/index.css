@@ -1,3 +1,127 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-on-tertiary-container: #323434;
+  --color-secondary: #5a5f62;
+  --color-surface-container: #eeeef0;
+  --color-secondary-fixed: #dfe3e7;
+  --color-on-primary-fixed-variant: #004a78;
+  --color-on-primary-fixed: #001d34;
+  --color-on-secondary-container: #5e6367;
+  --color-surface-container-highest: #e2e2e5;
+  --color-surface-container-low: #f3f3f6;
+  --color-on-secondary-fixed-variant: #43474b;
+  --color-on-secondary-fixed: #171c1f;
+  --color-on-tertiary-fixed-variant: #454747;
+  --color-on-error-container: #93000a;
+  --color-outline-variant: #bec7d4;
+  --color-error: #ba1a1a;
+  --color-secondary-fixed-dim: #c3c7cb;
+  --color-primary-fixed: #cfe5ff;
+  --color-inverse-surface: #2f3133;
+  --color-primary-container: #00a2ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-bright: #f9f9fc;
+  --color-surface-tint: #00629d;
+  --color-on-primary-container: #003659;
+  --color-surface-variant: #e2e2e5;
+  --color-surface: #f9f9fc;
+  --color-surface-dim: #dadadc;
+  --color-on-error: #ffffff;
+  --color-secondary-container: #dce0e4;
+  --color-on-tertiary: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-surface-container-high: #e8e8ea;
+  --color-inverse-on-surface: #f0f0f3;
+  --color-on-tertiary-fixed: #1a1c1c;
+  --color-primary: #00629d;
+  --color-tertiary-fixed-dim: #c6c6c7;
+  --color-inverse-primary: #99cbff;
+  --color-on-surface: #1a1c1e;
+  --color-primary-fixed-dim: #99cbff;
+  --color-tertiary-fixed: #e2e2e2;
+  --color-tertiary: #5d5f5f;
+  --color-background: #f9f9fc;
+  --color-on-surface-variant: #3f4852;
+  --color-on-primary: #ffffff;
+  --color-outline: #6f7883;
+  --color-on-background: #1a1c1e;
+  --color-on-secondary: #ffffff;
+  --color-tertiary-container: #9b9c9c;
+  
+  /* New colors from responsive HTML */
+  --color-surface-glass: rgba(255, 255, 255, 0.7);
+  --color-border-subtle: rgba(0, 162, 255, 0.1);
+  --color-accent-glow: rgba(0, 162, 255, 0.08);
+
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --spacing-stack-md: 24px;
+  --spacing-container-max: 1280px;
+  --spacing-margin-mobile: 16px;
+  --spacing-stack-sm: 8px;
+  --spacing-stack-lg: 64px;
+  --spacing-gutter: 24px;
+
+  --font-body-md: "Plus Jakarta Sans", sans-serif;
+  --font-code-sm: "Geist", monospace;
+  --font-label-caps: "Geist", sans-serif;
+  --font-headline-xl: "Plus Jakarta Sans", sans-serif;
+  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
+  --font-headline-lg-mobile: "Plus Jakarta Sans", sans-serif;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+
+  --text-code-sm: 14px;
+  --text-code-sm--line-height: 20px;
+  --text-code-sm--font-weight: 500;
+
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 16px;
+  --text-label-caps--letter-spacing: 0.05em;
+  --text-label-caps--font-weight: 600;
+
+  --text-headline-xl: 48px;
+  --text-headline-xl--line-height: 56px;
+  --text-headline-xl--letter-spacing: -0.02em;
+  --text-headline-xl--font-weight: 800;
+
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 700;
+
+  --text-headline-lg-mobile: 24px;
+  --text-headline-lg-mobile--line-height: 32px;
+  --text-headline-lg-mobile--font-weight: 700;
+}
+
+@layer utilities {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .material-symbols-outlined.fill {
+    font-variation-settings: 'FILL' 1;
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 162, 255, 0.1);
+  }
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 162, 255, 0.1);
+  }
+  .hero-gradient {
+    background: radial-gradient(circle at 80% 20%, rgba(0, 162, 255, 0.08) 0%, transparent 40%);
+  }
+  .btn-hover-scale:active {
+    transform: scale(0.96);
+  }
+}
