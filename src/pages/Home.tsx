@@ -23,36 +23,33 @@ export default function Home() {
       {/* Mobile Main Content */}
       <main className="md:hidden pt-20 px-margin-mobile pb-stack-lg max-w-container-max mx-auto space-y-stack-lg text-body-md flex-1">
         {/* Mobile Hero Section */}
-        <section className="flex flex-col gap-stack-md pt-stack-sm">
+        <section className="flex flex-row items-center gap-4 pt-stack-sm">
+          {/* Value Prop */}
+          <div className="w-[55%] space-y-3 text-left">
+            <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/5 text-primary border border-primary/10 shadow-sm text-[9px]">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary-container"></span>
+              </span>
+              <span>Disponible</span>
+            </div>
+            <h1 className="font-headline-lg-mobile text-[1.25rem] leading-tight text-on-surface tracking-tight font-bold">
+              Claridad <br/><span className="text-primary-container">Arquitectónica</span> en Software.
+            </h1>
+            <div className="pt-2 flex flex-col gap-2">
+              <Link to="/projects" className="bg-primary-container text-on-error font-code-sm text-[10px] px-3 py-2 rounded-full hover:opacity-90 active:scale-95 transition-all shadow-md text-center">
+                Ver Proyectos
+              </Link>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="bg-transparent text-primary font-code-sm text-[10px] px-3 py-2 rounded-full border-2 border-outline-variant/30 hover:bg-surface-container-low active:scale-95 transition-all text-center">
+                GitHub
+              </a>
+            </div>
+          </div>
           {/* Device Mockup */}
-          <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden glass-panel shadow-lg flex items-center justify-center p-4">
+          <div className="w-[45%] relative aspect-[3/4] rounded-xl overflow-hidden glass-panel shadow-lg flex items-center justify-center p-2">
             <div className="absolute inset-0 bg-accent-glow"></div>
             <div className="relative w-full h-full rounded-lg overflow-hidden border border-outline-variant/30 shadow-sm bg-surface-container-lowest">
               <img alt="Project Showcase Mockup" className="w-full h-full object-cover bg-white" src="/images/hero.png"/>
-            </div>
-          </div>
-          {/* Value Prop */}
-          <div className="text-center space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 text-primary border border-primary/10 mx-auto shadow-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span>
-              </span>
-              <span className="font-label-caps text-label-caps">Disponible para proyectos</span>
-            </div>
-            <h1 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">
-              Construyendo <span className="text-primary-container">Claridad Arquitectónica</span> en Software.
-            </h1>
-            <p className="text-on-surface-variant font-body-md text-body-md max-w-sm mx-auto leading-relaxed">
-              Combinando precisión técnica con estética digital de alta gama para construir aplicaciones web confiables y de alto rendimiento.
-            </p>
-            <div className="pt-2 flex gap-3 justify-center">
-              <Link to="/projects" className="bg-primary-container text-on-error font-code-sm text-code-sm px-6 py-3 rounded-full hover:opacity-90 active:scale-95 transition-all shadow-md cursor-pointer inline-block">
-                Ver Proyectos
-              </Link>
-              <button className="bg-transparent text-primary font-code-sm text-code-sm px-6 py-3 rounded-full border-2 border-outline-variant/30 hover:bg-surface-container-low active:scale-95 transition-all cursor-pointer">
-                GitHub
-              </button>
             </div>
           </div>
         </section>
@@ -63,9 +60,9 @@ export default function Home() {
         {/* Mobile Featured Projects */}
         <section className="space-y-stack-md">
           <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-primary border-b border-border-subtle pb-2 inline-block">Proyectos Destacados</h2>
-          <div className="flex flex-col gap-gutter">
+          <div className="grid grid-cols-12 gap-4">
             {/* Project Card 1 */}
-            <article className="glass-panel rounded-xl overflow-hidden shadow-sm flex flex-col group relative isolate">
+            <article className="col-span-5 row-span-2 glass-panel rounded-xl overflow-hidden shadow-sm flex flex-col group relative isolate">
               <div className="h-48 relative overflow-hidden bg-surface-container">
                 <img alt="Rossana Altez Coaching" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" src="/images/rossana.png"/>
               </div>
@@ -75,10 +72,9 @@ export default function Home() {
                   <p className="font-body-md text-body-md text-on-surface-variant line-clamp-2">Plataforma web para coaching y mentoría holística con un diseño inmersivo y catálogo de cursos.</p>
                 </div>
                 {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  <span className="px-2.5 py-1 rounded-full bg-primary/5 text-primary font-code-sm text-code-sm shadow-sm">Next.js</span>
-                  <span className="px-2.5 py-1 rounded-full bg-primary/5 text-primary font-code-sm text-code-sm shadow-sm">React</span>
-                  <span className="px-2.5 py-1 rounded-full bg-primary/5 text-primary font-code-sm text-code-sm shadow-sm">Radix UI</span>
+                <div className="flex flex-wrap gap-1 mt-auto">
+                  <span className="px-1.5 py-0.5 rounded-md bg-primary/5 text-primary font-code-sm text-[9px] shadow-sm">Next.js</span>
+                  <span className="px-1.5 py-0.5 rounded-md bg-primary/5 text-primary font-code-sm text-[9px] shadow-sm">React</span>
                 </div>
                 {/* Metrics */}
                 <div className="flex items-center justify-between pt-4 border-t border-border-subtle mt-2">
@@ -96,8 +92,8 @@ export default function Home() {
             </article>
 
             {/* Project Card 2 */}
-            <article className="glass-panel rounded-xl overflow-hidden shadow-sm flex flex-col group relative isolate">
-              <div className="h-48 relative overflow-hidden bg-surface-container">
+            <article className="col-span-7 glass-panel rounded-xl overflow-hidden shadow-sm flex flex-col group relative isolate">
+              <div className="h-24 relative overflow-hidden bg-surface-container">
                 <img alt="Active Recovery Dashboard" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 blur-sm" src="/images/active_recovery.png"/>
                 <div className="absolute top-4 left-4">
                   <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100/90 text-amber-700 tracking-wider backdrop-blur-sm">EN DESARROLLO</span>
@@ -109,10 +105,9 @@ export default function Home() {
                   <p className="font-body-md text-body-md text-on-surface-variant line-clamp-2">Plataforma de gestión de turnos y pacientes para centro de kinesiología.</p>
                 </div>
                 {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  <span className="px-2.5 py-1 rounded-full bg-primary/5 text-primary font-code-sm text-code-sm shadow-sm">Next.js</span>
-                  <span className="px-2.5 py-1 rounded-full bg-primary/5 text-primary font-code-sm text-code-sm shadow-sm">Supabase</span>
-                  <span className="px-2.5 py-1 rounded-full bg-primary/5 text-primary font-code-sm text-code-sm shadow-sm">Tailwind</span>
+                <div className="flex flex-wrap gap-1 mt-auto">
+                  <span className="px-1.5 py-0.5 rounded-md bg-primary/5 text-primary font-code-sm text-[9px] shadow-sm">Next.js</span>
+                  <span className="px-1.5 py-0.5 rounded-md bg-primary/5 text-primary font-code-sm text-[9px] shadow-sm">Supabase</span>
                 </div>
                 {/* Metrics */}
                 <div className="flex items-center justify-between pt-4 border-t border-border-subtle mt-2">
@@ -130,8 +125,8 @@ export default function Home() {
             </article>
 
             {/* Project Card 3 */}
-            <article className="glass-panel rounded-xl overflow-hidden shadow-sm flex flex-col group relative isolate border-dashed border-2 border-primary/20 hover:border-primary/50 transition-colors cursor-pointer">
-              <div className="h-48 relative overflow-hidden bg-surface-container-low flex flex-col items-center justify-center gap-2">
+            <article className="col-span-7 glass-panel rounded-xl overflow-hidden shadow-sm flex flex-col group relative isolate border-dashed border-2 border-primary/20 hover:border-primary/50 transition-colors cursor-pointer">
+              <div className="h-24 relative overflow-hidden bg-surface-container-low flex flex-col items-center justify-center gap-1">
                  <span className="material-symbols-outlined text-[60px] text-primary/40 group-hover:text-primary/60 transition-colors">rocket_launch</span>
                  <span className="font-label-caps text-label-caps text-primary/60">INICIA HOY</span>
               </div>
@@ -173,9 +168,9 @@ export default function Home() {
                   <Link to="/projects" className="bg-primary-container text-on-primary-container px-8 py-4 rounded-xl font-bold hover:shadow-[0_8px_24px_rgba(0,162,255,0.2)] transition-all duration-300 active:scale-95 cursor-pointer inline-block">
                     VER PROYECTOS
                   </Link>
-                  <button className="border-2 border-outline-variant/30 text-secondary px-8 py-4 rounded-xl font-bold hover:bg-surface-container-low transition-all duration-300 active:scale-95 cursor-pointer">
-                    MI STACK
-                  </button>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="border-2 border-outline-variant/30 text-secondary px-8 py-4 rounded-xl font-bold hover:bg-surface-container-low transition-all duration-300 active:scale-95 cursor-pointer flex items-center justify-center">
+                    GITHUB
+                  </a>
                 </div>
                 
                 {/* Stats */}
@@ -242,9 +237,9 @@ export default function Home() {
               </div>
               
               {/* Bento Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                 {/* Featured Card */}
-                <div className="md:col-span-2 md:row-span-2 group relative overflow-hidden bg-white rounded-3xl border border-primary/5 shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-500 cursor-pointer">
+                <div className="md:col-span-5 md:row-span-2 group relative overflow-hidden bg-white rounded-3xl border border-primary/5 shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-500 cursor-pointer flex flex-col">
                   <div className="flex flex-col h-full">
                     <div className="p-stack-md">
                       <div className="flex gap-2 mb-4">
@@ -281,7 +276,7 @@ export default function Home() {
                 </div>
                 
                 {/* Tech Card 1 */}
-                <a href="https://active-recovery.vercel.app/" target="_blank" rel="noopener noreferrer" className="block group bg-white p-stack-md rounded-3xl border border-primary/5 shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 cursor-pointer overflow-hidden relative">
+                <a href="https://active-recovery.vercel.app/" target="_blank" rel="noopener noreferrer" className="md:col-span-7 block group bg-white p-stack-md rounded-3xl border border-primary/5 shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300 cursor-pointer overflow-hidden relative">
                   <div className="absolute inset-0 z-0">
                     <img alt="Active Recovery" className="w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity blur-[2px]" src="/images/active_recovery.png"/>
                   </div>
@@ -303,7 +298,7 @@ export default function Home() {
                 </a>
                 
                 {/* Tech Card 2 */}
-                <div className="group bg-surface-container-lowest p-stack-md rounded-3xl border-2 border-dashed border-primary/20 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer flex flex-col justify-center items-center text-center">
+                <div className="md:col-span-7 group bg-surface-container-lowest p-stack-md rounded-3xl border-2 border-dashed border-primary/20 shadow-sm hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer flex flex-col justify-center items-center text-center">
                   <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-container group-hover:text-white transition-colors">
                     <span className="material-symbols-outlined text-4xl text-primary group-hover:text-white">rocket_launch</span>
                   </div>

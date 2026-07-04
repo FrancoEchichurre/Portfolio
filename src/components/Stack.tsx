@@ -15,10 +15,10 @@ const Stack: React.FC<StackProps> = ({ id = "stack" }) => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
                     
                     {/* Tarjeta Frontend */}
-                    <div className="bg-white p-8 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-10 bg-sky-50 rounded-lg flex items-center justify-center text-sky-600">
                                 <span className="material-symbols-outlined">desktop_windows</span>
@@ -35,7 +35,7 @@ const Stack: React.FC<StackProps> = ({ id = "stack" }) => {
                     </div>
 
                     {/* Tarjeta Backend & DB */}
-                    <div className="bg-white p-8 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="bg-white p-6 md:p-8 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-10 bg-sky-50 rounded-lg flex items-center justify-center text-sky-600">
                                 <span className="material-symbols-outlined">dns</span>
@@ -52,7 +52,7 @@ const Stack: React.FC<StackProps> = ({ id = "stack" }) => {
                     </div>
 
                     {/* Tarjeta Herramientas & Cloud */}
-                    <div className="bg-white p-8 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="col-span-2 md:col-span-1 bg-white p-6 md:p-8 rounded-2xl border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow">
                         <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-10 bg-sky-50 rounded-lg flex items-center justify-center text-sky-600">
                                 <span className="material-symbols-outlined">cloud_sync</span>

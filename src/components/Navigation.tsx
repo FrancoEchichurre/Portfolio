@@ -27,20 +27,10 @@ export default function Navigation() {
           ========================================= */}
       
       {/* Mobile TopAppBar */}
-      <header className="md:hidden fixed top-0 w-full z-50 bg-surface-glass dark:bg-surface-glass backdrop-blur-md border-b border-border-subtle shadow-sm flex justify-between items-center px-margin-mobile h-16">
-        <button 
-          onClick={toggleDrawer}
-          aria-label="Open menu" 
-          className="p-2 -ml-2 text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-container-high rounded-full active:scale-95 transition-transform duration-200 focus:outline-none cursor-pointer"
-        >
-          <span className="material-symbols-outlined">menu</span>
-        </button>
+      <header className="md:hidden fixed top-0 w-full z-50 bg-surface-glass dark:bg-surface-glass backdrop-blur-md border-b border-border-subtle shadow-sm flex justify-center items-center px-margin-mobile h-16">
         <Link to="/" className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim cursor-pointer">
             Franco.dev
         </Link>
-        <button className="text-primary dark:text-primary-fixed-dim font-label-caps text-label-caps hover:bg-surface-container-low dark:hover:bg-surface-container-high px-3 py-2 rounded-lg active:scale-95 transition-transform duration-200 cursor-pointer">
-            Contact
-        </button>
       </header>
 
       {/* Mobile NavigationDrawer Overlay */}
@@ -101,7 +91,6 @@ export default function Navigation() {
             <Link to="/projects" className={`font-bold font-body-md text-body-md py-1 cursor-pointer transition-colors ${location.pathname === '/projects' ? 'text-primary dark:text-primary-container border-b-2 border-primary' : 'text-secondary dark:text-secondary-fixed hover:text-primary'}`}>Projects</Link>
 
             <a className="text-secondary dark:text-secondary-fixed hover:text-primary transition-colors font-body-md text-body-md" href="#">Experience</a>
-            <button className="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-bold hover:bg-primary/90 transition-all duration-300 active:scale-95 cursor-pointer">Contact</button>
           </div>
         </div>
       </nav>
