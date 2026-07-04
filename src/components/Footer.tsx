@@ -6,7 +6,7 @@ export default function Footer() {
           Franco.dev
         </div>
         <div className="text-on-surface-variant font-label-caps text-label-caps text-center md:text-left text-[10px] md:text-[12px]">
-          © 2026 Franco Echichurre. Built with Architectural Clarity.
+          © 2026 Franco Zeoli. Built with Architectural Clarity.
         </div>
         <div className="flex items-center gap-6">
           <a className="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps active:opacity-80 cursor-pointer" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>

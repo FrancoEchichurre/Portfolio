@@ -14,7 +14,7 @@ export default function Home() {
             DISPONIBLE PARA NUEVOS PROYECTOS
           </div>
           <h1 className="font-headline-xl text-headline-xl text-on-background flex flex-col leading-tight">
-            <span className="text-on-surface-variant uppercase tracking-tight font-black text-4xl md:text-6xl lg:text-7xl">FRANCO ECHICHURRE</span>
+            <span className="text-on-surface-variant uppercase tracking-tight font-black text-4xl md:text-6xl lg:text-7xl">FRANCO ZEOLI</span>
             <span className="text-[#00a2ff] font-semibold text-2xl md:text-4xl lg:text-5xl mt-2 tracking-tight">Desarrollador de Software Full Stack</span>
           </h1>
           <p className="font-body-md text-body-md text-on-surface-variant max-w-xl text-lg md:text-xl leading-relaxed">
