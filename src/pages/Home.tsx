@@ -30,19 +30,19 @@ export default function Home() {
             </a>
           </div>
           {/* Stats Row */}
-          <div className="flex items-center gap-8 md:gap-12 mt-8 pt-8 border-t border-border-subtle w-full max-w-md">
-            <div>
-              <div className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">4+</div>
-              <div className="font-label-caps text-label-caps text-on-surface-variant mt-1">AÑOS DE EXP.</div>
-            </div>
-            <div>
-              <div className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">50+</div>
-              <div className="font-label-caps text-label-caps text-on-surface-variant mt-1">PROYECTOS</div>
-            </div>
-            <div>
-              <div className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">100%</div>
-              <div className="font-label-caps text-label-caps text-on-surface-variant mt-1">CALIDAD</div>
-            </div>
+          <div className="grid grid-cols-3 gap-4 md:gap-8 border-t border-slate-100 pt-8 w-full">
+              <div>
+                  <div className="text-xl md:text-2xl font-bold text-slate-900 dark:text-on-background">SaaS & Web</div>
+                  <div className="text-slate-500 dark:text-on-surface-variant text-xs uppercase tracking-wider font-semibold mt-1">Desarrollo a medida</div>
+              </div>
+              <div>
+                  <div className="text-xl md:text-2xl font-bold text-slate-900 dark:text-on-background">Frontend</div>
+                  <div className="text-slate-500 dark:text-on-surface-variant text-xs uppercase tracking-wider font-semibold mt-1">React & Tailwind</div>
+              </div>
+              <div>
+                  <div className="text-xl md:text-2xl font-bold text-slate-900 dark:text-on-background">E-Commerce</div>
+                  <div className="text-slate-500 dark:text-on-surface-variant text-xs uppercase tracking-wider font-semibold mt-1">Pasarelas y tiendas</div>
+              </div>
           </div>
         </div>
         <div className="flex-1 w-full relative perspective-1000">
